@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{ $style := resources.Get "/sass/style.scss" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.Permalink }}">
+  <title>{{ .Site.Title }}</title>
+
+  <body>
+    {{- partial "header" . -}}
+    <div id="content">
+      {{- block "main" . }}{{- end }}
+    </div>
+    {{- partial "footer" . -}}
+  </body>
+</html>
