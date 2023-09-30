@@ -1,0 +1,91 @@
+@import "variable";
+
+body {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+dl, ol, ul {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+dl dt {
+  font-weight: normal;
+}
+
+// p {
+//   font-size: var(--font-size14);
+// }
+
+.l-header {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.l-main {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.l-footer {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.l-footer .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: #fff;
+  }
+  &:hover svg {
+    fill: #24292f;
+  }
+}
+
+
+
+
+
+
+
+.spec-chart {
+  font-size: var(--font-size14);
+}
+
+.spec-chart>div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.spec-chart dt {
+  white-space: nowrap;
+  width: 10%;
+  text-align: center;
+}
+
+.spec-chart dd {
+  width: 90%;
+  margin: 0;
+  // background: #e6edf3;
+}
+
+.spec-chart dd span {
+  display: block;
+  margin: 0 0 8px;
+  padding: 0 8px;
+  background: #2589d0;
+  color: #fff;
+  text-align: right;
+}
