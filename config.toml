@@ -1,4 +1,5 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://shiokiriyama.github.io/'
+publishDir = 'docs'
 languageCode = 'ja'
 title = 'Shiokiriyama'
 theme = 'shiokiriyama-theme'
