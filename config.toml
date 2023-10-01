@@ -4,5 +4,4 @@ languageCode = 'ja'
 title = 'Shiokiriyama'
 author = "Shiokiriyama"
 theme = 'shiokiriyama-theme'
-
-disableKinds = ["taxonomy","taxonomyTerm"]
+disableKinds = ["taxonomy", "taxonomyTerm"]

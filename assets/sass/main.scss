@@ -1,8 +1,8 @@
-@import "variable";
+@import "_variable";
 
 body {
-  background: var(--color-background);
-  color: var(--color-text-primary);
+  background: var(--background-color);
+  color: var(--text-color-primary);
 }
 
 dl, ol, ul {
@@ -17,9 +17,9 @@ dl dt {
   font-weight: normal;
 }
 
-// p {
-//   font-size: var(--font-size14);
-// }
+p {
+  font-size: var(--font-size-14);
+}
 
 .l-header {
   max-width: 640px;
