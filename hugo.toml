@@ -1,0 +1,16 @@
+author = "shiokiriyama"
+baseURL = 'https://shiokiriyama.github.io/'
+defaultContentLanguage = "ja"
+disableKinds = ["taxonomy", "taxonomyTerm"]
+languageCode = 'ja'
+publishDir = 'docs'
+theme = 'shiokiriyama-theme'
+title = 'shiokiriyama'
+
+[markup.goldmark.parser]
+autoHeadingID = false
+[markup.goldmark.parser.attribute]
+block = true
+# title = true
+[markup.goldmark.renderer]
+unsafe = true
