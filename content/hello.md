@@ -1,7 +1,9 @@
 ---
 title: "hello"
-date: 2019-11-14T15:28:52+09:00
-draft: true
+date: 2023-10-10T10:36:18+09:00
+draft: draft
+tags:
+- test
 ---
 
 # h1
@@ -15,6 +17,12 @@ draft: true
 ##### h5
 
 ###### h6
+
+```
+test
+test
+test
+```
 
 ```python
 import numpy as np
