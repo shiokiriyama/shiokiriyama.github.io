@@ -1,30 +1,32 @@
 @import "_variable";
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   background: var(--background-color);
-}
-
-dl, ol, ul {
-  margin: 0;
-}
-
-ul {
-  padding: 0;
-  list-style: none;
-}
-
-dl dt {
-  font-weight: normal;
-}
-
-p {
-  font-size: var(--font-size-14);
 }
 
 .l-root {
   padding: 0 16px;
   background: var(--background-color);
   color: var(--text-color-primary);
+  p {
+    font-size: var(--font-size-14);
+  }
+  dl, ol, ul {
+    margin: 0;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  dl dt {
+    font-weight: normal;
+  }
 }
 
 .l-header,
@@ -43,6 +45,14 @@ p {
   }
   .c-sns-icon {
     fill: #fff;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+
+.c-link {
+  &:hover {
+    text-decoration: none;
   }
 }
 

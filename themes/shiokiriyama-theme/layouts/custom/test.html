@@ -294,4 +294,73 @@
     <li style="background: var(--color-blue-gray-900);" data-text="Blue Gray 900">Blue Gray 900</li>
   </ul>
 </div>
+<style>
+  .spec-chart {
+    font-size: var(--font-size14);
+  }
+
+  .spec-chart>div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .spec-chart dt {
+    white-space: nowrap;
+    width: 10%;
+    text-align: center;
+  }
+
+  .spec-chart dd {
+    width: 90%;
+    margin: 0;
+  }
+
+  .spec-chart dd span {
+    display: block;
+    margin: 0 0 8px;
+    padding: 0 8px;
+    background: #2589d0;
+    color: #fff;
+    text-align: right;
+  }
+</style>
+
+<div>
+  <d class="spec-chart">
+    <div>
+      <dt>100M</dt>
+      <dd>
+        <span style="width: calc(17.750 / 17.750 * 100%);">Core i7 2600: 17.750s</span>
+        <span style="width: calc(11.379 / 17.750 * 100%);">Core i5 4440: 11.379s</span>
+        <span style="width: calc(6.850 / 17.750 * 100%);">Core i7 7700: 6.850s</span>
+      </dd>
+    </div>
+    <div>
+      <dt>250M</dt>
+      <dd>
+        <span style="width: calc(51.750 / 51.750 * 100%);">Core i7 2600: 51.750s</span>
+        <span style="width: calc(32.013 / 51.750 * 100%);">Core i5 4440: 32.013s</span>
+        <span style="width: calc(19.477 / 51.750 * 100%);">Core i7 7700: 19.477s</span>
+      </dd>
+    </div>
+    <div>
+      <dt>500M</dt>
+      <dd>
+        <span style="width: calc(123.028 / 123.028 * 100%);">Core i7 2600: 123.028s</span>
+        <span style="width: calc(71.386 / 123.028 * 100%);">Core i5 4440: 71.386s</span>
+        <span style="width: calc(43.020 / 123.028 * 100%);">Core i7 7700: 43.020s</span>
+      </dd>
+    </div>
+    <div>
+      <dt>1G</dt>
+      <dd>
+        <span style="width: calc(272.141 / 272.141 * 100%);">Core i7 2600: 272.141s</span>
+        <span style="width: calc(159.784 / 272.141 * 100%);">Core i5 4440: 159.784s</span>
+        <span style="width: calc(94.832 / 272.141 * 100%);">Core i7 7700: 94.832s</span>
+      </dd>
+    </div>
+  </dl>
+</div>
+
 {{ end }}

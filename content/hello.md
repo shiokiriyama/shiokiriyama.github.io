@@ -1,9 +1,8 @@
 ---
 title: "hello"
 date: 2023-10-10T10:36:18+09:00
-draft: draft
-tags:
-- test
+draft: false
+categories: [test]
 ---
 
 # h1

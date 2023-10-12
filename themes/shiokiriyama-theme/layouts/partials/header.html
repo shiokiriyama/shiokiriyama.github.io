@@ -1,3 +1,13 @@
 <header class="l-header">
-  <h1>{{ .Site.Title }}</h1>
+  <h1>
+    {{/*  <a class="c-link" href="/">{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}</a>  */}}
+    <a class="c-link" href="/">{{ .Site.Title }}</a>
+  </h1>
+  <nav>
+    <ul>
+      <li>
+        <a class="c-link" href="/categories/test/">test</a>
+      </li>
+    </ul>
+  </nav>
 </header>

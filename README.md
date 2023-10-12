@@ -11,4 +11,7 @@ Personal website powered by Hugo
 \$ hugo
 # minify build
 \$ hugo --minify
+
+# 未使用テンプレート検出
+\$ hugo --printUnusedTemplates
 ```

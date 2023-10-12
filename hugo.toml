@@ -2,9 +2,11 @@ author = "shiokiriyama"
 baseURL = 'https://shiokiriyama.github.io/'
 defaultContentLanguage = "ja"
 disableKinds = ["taxonomy", "taxonomyTerm"]
+hasCJKLanguage = true
 languageCode = 'ja'
 publishDir = 'docs'
 theme = 'shiokiriyama-theme'
+themesDir = "themes"
 title = 'shiokiriyama'
 
 [markup.goldmark.parser]
@@ -14,3 +16,9 @@ block = true
 # title = true
 [markup.goldmark.renderer]
 unsafe = true
+
+[frontmatter]
+date = ["date", "publishDate", "lastmod"]
+expiryDate = ["expiryDate"]
+lastmod = [":git", "lastmod", "date", "publishDate"]
+publishDate = ["publishDate", "date"]
