@@ -1,9 +1,10 @@
----
-title: "hello"
-date: 2023-10-10T10:36:18+09:00
-draft: false
-categories: [test]
----
++++
+title = "hello"
+date = "2023-10-10T10:36:18+09:00"
+lastmod = ""
+draft = true
+categories = ["test"]
++++
 
 # h1
 
