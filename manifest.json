@@ -1,0 +1,13 @@
+{
+  "background_color": "#fff",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icon/hd_hi.svg",
+      "sizes": "any"
+    }
+  ],
+  "name": "Shiokiriyama",
+  "orientation": "any",
+  "start_url": "/"
+}
