@@ -3,7 +3,7 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "icon/favicon.svg",
+      "src": "favicon.svg",
       "sizes": "any"
     }
   ],
