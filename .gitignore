@@ -1,0 +1,13 @@
+# Visual Studio Code
+.vscode/*
+
+# Python Environments
+*.py[codz]
+.env
+pycache
+
+# Sass Map File
+*.css.map
+
+# Global macOS
+.DS_Store
