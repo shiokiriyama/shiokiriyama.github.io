@@ -1,0 +1,34 @@
+@charset 'utf-8';
+/*! createdAt: 2025-04-08T12:53:53+09:00 */
+/*! updatedAt: 2025-07-30T13:35:26+09:00 */
+
+@use 'foundation';
+@use 'layout';
+@use 'component';
+@use 'project';
+@use 'utility';
+
+@layer foundation, project, layout, component, utility;
+
+/**
+ * Partial Name (Sample)
+ */
+
+/*
+foundation/_settings, foundation/_color, foundation/_setting, foundation/_breakpoint, foundation/_reset, foundation/_page, foundation/_typography, foundation/_config, foundation/_option, library/_function, library/_vendor, library/_vendor-extension, layout/_header, layout/_navigation, layout/_intro, layout/_content, layout/_main, layout/_footer, component/_action, component/_alert, component/_badge, component/_block, component/_box, component/_breadcrumb, component/_button-group, component/_button, component/_card, component/_carousel, component/_central, component/_close, component/_code, component/_custom-forms, component/_dialog, component/_dropdown, component/_embed, component/_form, component/_forms, component/_functions, component/_gallery, component/_grid, component/_image, component/_images, component/_inline, component/_input-group, component/_jumbotron, component/_justify, component/_list-group, component/_list, component/_media, component/_mixins, component/_modal, component/_nav, component/_navbar, component/_pack, component/_pagination, component/_panel, component/_popover, component/_print, component/_progress, component/_rank, component/_reboot, component/_root, component/_scroll, component/_section, component/_spinners, component/_split, component/_stack, component/_table, component/_toasts, component/_tooltip, component/_transitions, component/_type, component/_utilities, component/_variables, component/_wrapper, project/_article, project/_comments, project/_gallery, project/_profile, project/_alert, project/_badge, project/_balloon, project/_breadcrumbs, project/_label, project/_pagination, project/_tag-cloud, utility/_animation, utility/_align.scss, utility/_align, utility/_background.scss, utility/_borders.scss, utility/_clearfix.scss, utility/_clearfix, utility/_display.scss, utility/_embed.scss, utility/_flex.scss, utility/_float.scss, utility/_margin, utility/_overflow.scss, utility/_position.scss, utility/_position, utility/_screen-readers.scss, utility/_shadows.scss, utility/_size, utility/_sizing.scss, utility/_spacing.scss, utility/_stretched-link.scss, utility/_text.scss, utility/_text, utility/_visibility.scss, utility/_col, utility/_column, utility/_display, utility/_float, utility/_padding, utility/_pull, utility/_push,  */
+
+/**
+ * State Name (Sample)
+ */
+
+/*
+.is-show, .is-hide, .is-active, .is-first, .is-last, .is-start, .is-stop, .is-end, .is-begin, .is-open, .is-close, .is-select, .is-new, .is-normal, .is-external, .is-exists, .is-visible, .is-invisible, .contains-*, .exists-*, .has-*, .needs-*, .can-*, .need-*, .should-*
+*/
+
+/**
+ * Class Name (Sample)
+ */
+
+/*
+root, container, header, heading, body, home, area, copy, visual, social, panel, inner, wrap, balloon, launcher, sheet, note, menu, global, roll-over, clone-element, nav, nav-bar, navigation, contact, scroll, type, logo, item, sentence, line, background, desc, description, banner, pickup, column, index, link, anchor, text, box, image, expertise, button, work, company, copyright, credit, detail, continue, top, alert, unit, load, arrow, arrow-up, arrow-down, arrow-left, arrow-right, dropdown, close, list, sub, catch, slide, movie, picture, current, icon, cart, trigger, drawer
+*/

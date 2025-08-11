@@ -1,0 +1,153 @@
+@charset 'utf-8';
+
+@use 's-variable' as s;
+@use 'sass:map';
+
+/* ---- Breakpoint ---- */
+
+/**
+ * @param {number} [max = null]
+ */
+@mixin mediaQueryUnder($max: null) {
+  @if $max == null {
+    @error "";
+  }
+  $_value: map.get(s.$breakpoints, $max);
+  @media (width <= $_value) {
+    @content;
+  }
+}
+
+/**
+ * @param {number} [min = null]
+ */
+@mixin mediaQueryOver($min: null) {
+  @if $min == null {
+    @error "";
+  }
+  $_value: map.get(s.$breakpoints, $min);
+  @media ($_value <= width) {
+    @content;
+  }
+}
+
+// @mixin heading() {}
+// @mixin paragraph() {}
+
+/* ---- Text ---- */
+
+/**
+ * Text Kerning
+ *
+ * @param {number} [per = 5]
+ */
+@mixin textKerning($per: 5) {
+  @if not unitless($per) {
+    @error "This mixin expects a unitless number (e.g. 5)";
+  }
+  $value: $per / 100 * 1em;
+  letter-spacing: $value;
+  text-indent: $value;
+}
+
+/* ---- List ---- */
+
+/**
+ * @param {number} [style = none]
+ * @param {number} [position = inside]
+ */
+@mixin listBasic($style: none, $position: inside) {
+  margin: 0;
+  padding: 0;
+  list-style: $style $position;
+}
+
+/**
+ * @param {number} [style = decimal]
+ * @param {number} [position = inside]
+ */
+@mixin listDecimal($style: decimal, $position: inside) {
+  margin: 0;
+  padding: 0;
+  list-style: $style $position;
+}
+
+@mixin listDesc() {
+  display: flex;
+  flex-wrap: wrap;
+  & > dd {
+    margin: 0;
+  }
+}
+
+/* ---- Link ---- */
+
+@mixin linkText($style: default) {
+  text-decoration: none;
+  transition: s.$base-animation;
+  @if $style == 'default' {
+    &:link,
+    &:hover,
+    &:active {
+      color: inherit;
+    }
+  }
+  @if $style == 'border' {
+    border-bottom: 0 solid yellow;
+    &:link {
+      color: inherit;
+    }
+    &:hover {
+      color: inherit;
+      border-bottom: 4px solid yellow;
+    }
+    &:active {
+      color: inherit;
+      border-bottom: 4px solid red;
+    }
+  }
+  @if $style == 'invert' {
+    &:link {
+      color: inherit;
+    }
+    &:hover {
+      color: inherit;
+      border-bottom: 4px solid yellow;
+    }
+    &:active {
+      color: inherit;
+      border-bottom: 1px solid red;
+    }
+  }
+}
+
+@mixin linkImage() {
+}
+
+@mixin progressInit($width: 100%, $height: revert) {
+  // display: block;
+  block-size: $height;
+  inline-size: $width;
+  // appearance: none;
+  // &::-webkit-progress-bar {
+  //   border-radius: 4px;
+  //   background: s.colorRgba(white, 1);
+  // }
+  // &::-webkit-progress-value {
+  //   border-radius: 4px;
+  //   background: s.colorRgba(light-blue-900, 1);
+  // }
+}
+
+/* ---- Utility ---- */
+
+/* Font Adjust */
+@mixin font-adjust__n20() {
+  font-size: calc(100% - 0.2em); // 20%
+  margin: 0 0 0 calc(100% - (100% - 0.05em));
+}
+
+@mixin u-font-adjust__n40() {
+  font-size: calc(100% - 0.4em); // -40%
+  margin: 0 0 0 calc(100% - (100% - 0.1em));
+}

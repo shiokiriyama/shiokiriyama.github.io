@@ -1,0 +1,86 @@
+@charset 'utf-8';
+
+@use '../settings' as s;
+
+@layer utility {
+  /* Display */
+  .u-display__block {
+    display: block;
+  }
+
+  .u-display__none {
+    display: none;
+  }
+
+  /* Font */
+  .u-font-size {
+    &__12 {
+      font-size: s.fontSize(12);
+    }
+    &__14 {
+      font-size: s.fontSize(14);
+    }
+  }
+
+  /* Text */
+  .u-text-left {
+    text-align: left;
+  }
+
+  .u-text-center {
+    text-align: center;
+  }
+
+  .u-text-right {
+    text-align: right;
+  }
+
+  .u-uppercase {
+    text-transform: uppercase;
+  }
+
+  .u-lowercase {
+    text-transform: lowercase;
+  }
+
+  /* Margin */
+  .u-margin__none {
+    margin: 0;
+  }
+
+  /* Padding */
+  .u-padding__none {
+    padding: 0;
+  }
+}
+
+/* Kerning */
+// .u-kerning {
+//   &__p5 {
+//     letter-spacing: 0.05em; // 5%
+//   }
+//   &__p10 {
+//     letter-spacing: 0.1em; // 10%
+//   }
+//   &__p15 {
+//     letter-spacing: 0.15em; // 15%
+//   }
+//   &__n5 {
+//     letter-spacing: -0.05em; // -5%
+//   }
+//   &__n10 {
+//     letter-spacing: -0.1em; // -10%
+//   }
+//   &__n15 {
+//     letter-spacing: -0.15em; // -15%
+//   }
+// }
+
+/* Color */
+// .u-text-white {
+//   @include s.colorTxt(white, 1);
+// }
+
+// .u-text-black {
+//   @include s.colorTxt(black, 1);
+// }

@@ -1,0 +1,20 @@
+@charset 'utf-8';
+
+@use '../settings' as s;
+
+@layer layout {
+  .l-header {
+    position: relative;
+    &__heading {
+      line-height: 1;
+    }
+    &__link {
+      text-box: trim-both cap alphabetic;
+    }
+  }
+
+  .l-header-navi {
+    position: fixed;
+    top: 0;
+  }
+}

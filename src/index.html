@@ -4,19 +4,244 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shiokiriyama</title>
+    <meta name="description" content="塩切山は美しい自然と歴史を楽しめる観光スポットです。">
+    <meta property="og:title" content="Shiokiriyama">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shiokiriyama.github.io/">
+    <meta property="og:image" content="https://shiokiriyama.github.io/ogp.jpg">
+    <meta property="og:image:alt" content="塩切山の絶景">
+    <link rel="stylesheet" href="css/style.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&=:0123456789&display=swap">
+    <script src="js/canvas.js" defer></script>
+    <script src="js/script.js" defer></script>
     <link href="favicon.svg" rel="icon" type="image/svg+xml">
     <link rel="manifest" href="manifest.json">
   </head>
 
   <body>
-    <div class="l-root">
-      <p>{{PARAGRAPH}}</p>
-      <ul>
-        <li><a href="https://github.com/shiokiriyama" target="_blank" rel="external noopener noreferrer">GitHub</a></li>
-        <li><a href="https://docs.google.com/spreadsheets/d/1gwBu8o9fw659jRspVid1O1mukQ8Krl6LfUuMaEIk59k/edit?usp=drive_link" target="_blank" rel="external noopener noreferrer">Google Spreadsheet Note</a></li>
-        <li><a href="https://docs.google.com/document/d/1gyxwf45JAc4dfEVhMGv3ekeizmUM8ydepmI6JA80qWA/edit?usp=drive_link" target="_blank" rel="external noopener noreferrer">Google Document Note</a></li>
-        <li><a href="https://account.box.com/login" target="_blank" rel="external noopener noreferrer">Box</a></li>
-      </ul>
+    <div class="root">
+      <!-- home-bg -->
+      <div class="c-home-bg">
+        <canvas class="js-homeBgLayer0">Screen-idle ver.0.1 By Canvas API</canvas>
+        <canvas class="js-homeBgLayer1">Cyber-theme Clock ver.0.1 By Canvas API</canvas>
+      </div>
+
+      <!-- header -->
+      <header class="l-header">
+        <p class="l-header__heading c-heading">
+          <a class="l-header__link c-heading__link" href="">Shiokiriyama
+            <!-- <ruby>Shiokiriyama<rt>シオキリヤマ</rt></ruby> -->
+          </a>
+        </p>
+        <nav class="l-header-navi">
+          <ul class="c-header-navi__list">
+            <li class="c-header-navi__list-item">
+              <a class="c-header-navi__list-link" data-index-number="0" href="">Cover</a>
+            </li>
+            <li class="c-header-navi__list-item">
+              <a class="c-header-navi__list-link" data-index-number="1" href="">Skills</a>
+            </li>
+            <li class="c-header-navi__list-item">
+              <a class="c-header-navi__list-link" data-index-number="2" href="">Records</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- main -->
+      <main class="l-main">
+        <section class="l-section-cover p-cover" data-page-number="0">
+          {% include concept.html %}
+        </section>
+
+        <section class="l-section-skill p-skill" data-page-number="1">
+          <div class="l-section-skill__inner">
+            <header>
+              <h2 class="p-skill__heading">Skill<span class="u-font-adjust__n20">s</span></h2>
+            </header>
+            <ul class="p-skill-set__list">
+              <li class="p-skill-set__list-item">
+                <figure class="p-skill-set__figure">
+                  <img class="p-skill-set__figure-icon" src="img/lang_html5.svg" alt="HTML5">
+                  <figcaption class="p-skill-set__figure-caption">HTML5</figcaption>
+                </figure>
+                <p class="p-skill-point">構造的マークアップ<span>Structural Markup</span></p>
+                <figure class="c-figure u-text-center">
+                  <progress class="p-skill-point__level-eval-bar" max="100" min="0" value="95">95%</progress>
+                  <figcaption class="p-skill-point__level-eval">Self-Evaluation: <em class="c-em-regular">95</em>%</figcaption>
+                </figure>
+                <p class="p-skill-point__level-exp">Work-Experience: <em class="c-em-regular">10&plus;</em>&nbsp;years</p>
+                <h4 class="p-skill-point__relation-heading">Related Tech: </h4>
+                <ul class="p-skill-point__relation-list">
+                  <li class="p-skill-point__relation-list-item">Markdown</li>
+                </ul>
+              </li>
+              <li class="p-skill-set__list-item">
+                <figure class="p-skill-set__figure">
+                  <img class="p-skill-set__figure-icon" src="img/lang_css.svg" alt="CSS3">
+                  <figcaption class="p-skill-set__figure-caption">CSS3</figcaption>
+                </figure>
+                <p class="p-skill-point">レスポンシブデザイン<span>Qualify, Animate, Reuse</span></p>
+                <figure class="c-figure u-text-center">
+                  <progress class="p-skill-point__level-eval-bar" max="100" min="0" value="75">75%</progress>
+                  <figcaption class="p-skill-point__level-eval">Self-Evaluation: <em class="c-em-regular">75</em>%</figcaption>
+                </figure>
+                <p class="p-skill-point__level-exp">Work-Experience: <em class="c-em-regular">10&plus;</em>&nbsp;years</p>
+                <h4 class="p-skill-point__relation-heading">Related Tech: </h4>
+                <ul class="p-skill-point__relation-list">
+                  <li class="p-skill-point__relation-list-item">SASS (with FLOCSS)</li>
+                </ul>
+              </li>
+              <li class="p-skill-set__list-item">
+                <figure class="p-skill-set__figure">
+                  <img class="p-skill-set__figure-icon" src="img/lang_javascript.svg" alt="JavaScript">
+                  <figcaption class="p-skill-set__figure-caption">JavaScript</figcaption>
+                </figure>
+                <p class="p-skill-point">インタラクション構築<span>Dom, Async, Api</span></p>
+                <figure class="c-figure u-text-center">
+                  <progress class="p-skill-point__level-eval-bar" max="100" min="0" value="40">40%</progress>
+                  <figcaption class="p-skill-point__level-eval">Self-Evaluation: <em class="c-em-regular">40</em>%</figcaption>
+                </figure>
+                <p class="p-skill-point__level-exp">Work-Experience: <em class="c-em-regular">5&plus;</em>&nbsp;years</p>
+                <h4 class="p-skill-point__relation-heading">Related Tech: </h4>
+                <ul class="p-skill-point__relation-list">
+                  <li class="p-skill-point__relation-list-item">Canvas API</li>
+                </ul>
+              </li>
+              <li class="p-skill-set__list-item">
+                <figure class="p-skill-set__figure">
+                  <img class="p-skill-set__figure-icon" src="img/app_git.svg" alt="GitHub">
+                  <figcaption class="p-skill-set__figure-caption">Git</figcaption>
+                </figure>
+                <p class="p-skill-point">コード管理<span>Code Management</span></p>
+                <figure class="c-figure u-text-center">
+                  <progress class="p-skill-point__level-eval-bar" max="100" min="0" value="15">15%</progress>
+                  <figcaption class="p-skill-point__level-eval">Self-Evaluation: <em class="c-em-regular">15</em>%</figcaption>
+                </figure>
+                <p class="p-skill-point__level-exp">Work-Experience: <em class="c-em-regular">1&plus;</em>&nbsp;years</p>
+                <h4 class="p-skill-point__relation-heading">Related Tech: </h4>
+                <ul class="p-skill-point__relation-list">
+                  <li class="p-skill-point__relation-list-item">Shell Script</li>
+                </ul>
+              </li>
+              <li class="p-skill-set__list-item">
+                <figure class="p-skill-set__figure">
+                  <img class="p-skill-set__figure-icon" src="img/app_nodejs.svg" alt="Node.js">
+                  <figcaption class="p-skill-set__figure-caption">Node.js</figcaption>
+                </figure>
+                <p class="p-skill-point">JavaScript開発環境<span>JS Development Environment</span></p>
+                <figure class="c-figure u-text-center">
+                  <progress class="p-skill-point__level-eval-bar" max="100" min="0" value="15">15%</progress>
+                  <figcaption class="p-skill-point__level-eval">Self-Evaluation: <em class="c-em-regular">15</em>%</figcaption>
+                </figure>
+                <p class="p-skill-point__level-exp">Work-Experience: <em class="c-em-regular">1&plus;</em>&nbsp;years</p>
+                <h4 class="p-skill-point__relation-heading">Related Tech: </h4>
+                <ul class="p-skill-point__relation-list">
+                  <li class="p-skill-point__relation-list-item">Task Runner</li>
+                  <li class="p-skill-point__relation-list-item">Template Engine</li>
+                </ul>
+              </li>
+              <li class="p-skill-set__list-item">
+                <p class="p-skill-point__relation-heading --etc">Things, <br>plan to learning: </p>
+                <ul class="p-skill-point__relation-list">
+                  <li class="p-skill-point__relation-list-item">Python</li>
+                  <li class="p-skill-point__relation-list-item">Lua</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="l-section-record p-record" data-page-number="2">
+          <div class="p-record__inner">
+            <h2 class="p-record__heading">Record<span class="u-font-adjust__n20">s</span></h2>
+            <ol>
+              <li>
+                <p>2003~2005, Age 19~21: Professional training college</p>
+                <h3>デジタルクリエイティブ学部</h3>
+                <details open>
+                  <summary>See more</summary>
+                  <p>ピクサー・アニメーション・スタジオの作品に憧れ、映像分野についての基礎的な知識を身に付ける。3DCGの制作から実写合成、音楽アーティストのPV制作、架空CMの企画と台本作成など、意欲的に挑戦。また、ウェブサイト制作技術にも興味を持ち、独学で学び始め、ものづくりへの強い関心を持つようになる。</p>
+                </details>
+              </li>
+              <li>
+                <p>2005~2006, Age 21~22: Photographer Assistant</p>
+                <h3>コマーシャルフォトスタジオ（アシスタント）</h3>
+                <details open>
+                  <summary>See more</summary>
+                  <p>チラシに掲載する日用品から、モデル・美術品などの撮影業務に携わり、照明技術・撮影技術に触れる。</p>
+                </details>
+              </li>
+              <li>
+                <p>2006~2020, Age 22~36: Web Designer (with focus on the photograph)</p>
+                <h3>ウェブ制作会社（ウェブデザイナー）</h3>
+                <details open>
+                  <summary>See more</summary>
+                  <p>ゲーム制作会社や玩具製造販売会社とのタイアップなどでデザインチーフを担当し、自社コンテンツの運営、企画にも関わる。</p>
+                </details>
+                <h3>新聞社（ウェブデザイナー）</h3>
+                <details open>
+                  <summary>See more</summary>
+                  <p>サイト各種更新作業・特集ページ作成・新聞広告やチラシ作成などの業務を担当する。</p>
+                </details>
+              </li>
+              <li>
+                <p>2015~2020, Age 32~36: Front-End Engineer (with focus on the photograph, design)</p>
+                <h3>ウェブ制作会社（ウェブデザイナー兼フロントエンドエンジニア）</h3>
+                <details open>
+                  <summary>See more</summary>
+                  <p></p>
+                </details>
+              </li>
+            </ol>
+            <h3>Apps (using at works)</h3>
+            <ol>
+              <li>Visual Studio Code</li>
+              <li><s>Adobe Photoshop (~CS5.1)</s></li>
+              <li><s>Adobe Illustrator (~CS5.5)</s></li>
+              <li>Node.js</li>
+              <li>Git Bash</li>
+            </ol>
+            <p>※2025年時点での概算</p>
+          </div>
+        </section>
+      </main>
+
+      <!-- footer -->
+      <footer class="l-footer">
+        <nav class="l-footer-navi">
+          <ul class="c-footer-navi__list">
+            <li class="c-footer-navi__list-item">
+              <a class="c-footer-navi__list-link" href="">Intro<!-- Concerning --></a>
+            </li>
+            <li class="c-footer-navi__list-item">
+              <a class="c-footer-navi__list-link" href="">Note</a>
+            </li>
+            <li class="c-footer-navi__list-item">
+              <a class="c-footer-navi__list-link" href="">Works</a>
+            </li>
+            <li class="c-footer-navi__list-item">
+              <a class="c-footer-navi__list-link" href="">Data</a>
+            </li>
+          </ul>
+        </nav>
+        <ul class="c-footer-sns__list">
+          <li class="c-footer-sns__list-item">
+            <a class="c-footer-sns__list-link" href="https://github.com/shiokiriyama" target="_blank" rel="external noopener noreferrer" aria-label="GitHub">
+              <figure class="c-footer-sns__figure">
+                <img class="c-footer-sns__icon" src="img/service_github_light.svg" alt="GitHub">
+                <figcaption class="c-footer-sns__caption">GitHub</figcaption>
+              </figure>
+            </a>
+          </li>
+        </ul>
+        <p class="c-footer-credit">
+          <small class="c-footer-credit__copyright">&copy; /(Shio)\s?(kiriyama)/</small>
+        </p>
+      </footer>
     </div>
   </body>
 

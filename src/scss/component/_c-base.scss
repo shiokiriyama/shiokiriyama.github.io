@@ -1,0 +1,64 @@
+@charset 'utf-8';
+
+@use '../settings' as s;
+
+@layer component {
+  /* ---- Common ---- */
+
+  /* List */
+  .c-list {
+    @include s.listBasic();
+    // &__item {
+    // }
+  }
+
+  .c-list-decimal {
+    @include s.listDecimal();
+    // &__item {
+    // }
+  }
+
+  .c-list-desc {
+    @include s.listDesc();
+    // &__desc {
+    //   margin: 0;
+    // }
+  }
+
+  .c-figure {
+    margin: 0;
+  }
+
+  .c-em-regular {
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .c-em-bold {
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .c-strong {
+    font-weight: 700;
+  }
+
+  .c-progress {
+    appearance: none;
+    block-size: 1rem;
+    inline-size: 75%;
+    &::-webkit-progress-bar {
+      border-radius: 4px;
+      background: s.colorRgba(white, 1);
+    }
+    &::-webkit-progress-value {
+      border-radius: 4px;
+      background: s.colorRgba(light-blue-700, 1);
+    }
+  }
+
+  /* ---- BETA ---- */
+  .c-text-height {
+    text-box: trim-both cap alphabetic; // BETA
+  }
+}

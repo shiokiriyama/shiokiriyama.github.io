@@ -1,0 +1,39 @@
+@charset 'utf-8';
+
+@use '../settings' as s;
+
+@layer component {
+  .c-heading {
+    @include s.textKerning(-5);
+    margin: s.spacing(0);
+    text-align: center;
+    // isolation: isolate;
+    &__link {
+      @include s.linkText();
+      display: inline-block;
+      font-size: s.fontSize(20);
+      // font-size: clamp(s.$font-size-64, 20vw, s.$font-size-160);
+      font-weight: 700;
+      text-transform: uppercase;
+      // mix-blend-mode: difference;
+      color: s.colorRgba(gray-800, 1);
+    }
+  }
+
+  .c-header-navi {
+    &__list {
+      @include s.listBasic();
+    }
+    &__list-item {
+      writing-mode: vertical-lr;
+    }
+    &__list-link {
+      @include s.textKerning(5);
+      border-inline-end: 1px solid s.colorRgba(gray-600, 1);
+      font-size: s.fontSize(14);
+      text-decoration: none;
+      text-transform: uppercase;
+      color: s.colorRgba(gray-600, 1);
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@charset 'utf-8';
+
+@use '../settings' as s;
+
+@layer project {
+  /* Record */
+  .p-record {
+    display: flex;
+    justify-content: center;
+    background: white;
+    color: black;
+    &__inner {
+      max-width: s.blockWidth(640);
+    }
+    &__heading {
+      @include s.textKerning(-10);
+      font-size: s.fontSize(96);
+      font-weight: 400;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+}

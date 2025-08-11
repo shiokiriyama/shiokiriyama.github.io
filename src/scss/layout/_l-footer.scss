@@ -1,0 +1,19 @@
+@charset 'utf-8';
+
+@use '../settings' as s;
+
+@layer layout {
+  .l-footer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50svh;
+  }
+
+  .l-footer-navi {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}

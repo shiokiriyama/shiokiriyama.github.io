@@ -1,0 +1,51 @@
+@charset 'utf-8';
+
+@use '../settings' as s;
+
+@layer layout {
+  /* Root */
+  .root {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100svh; // height: 100dvh; max-height: 100lvh;
+    font-family: s.$base-font-family-sans-serif;
+    font-feature-settings: normal;
+    font-kerning: normal;
+    font-optical-sizing: auto;
+    font-weight: 400;
+  }
+
+  /* Main */
+  .l-main {
+    display: grid;
+    // grid-template-rows: repeat(3, 100svh);
+  }
+
+  /* Cover */
+  .l-section-cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100svh;
+  }
+
+  /* Skill */
+  .l-section-skill {
+    display: flex;
+    justify-content: center;
+    &__inner {
+      max-width: s.blockWidth(800);
+    }
+    // &__header {
+    //   position: sticky;
+    //   top: 0;
+    //   container-type: scroll-state;
+    // }
+  }
+
+  // @container scroll-state(stuck: top) {
+  //   .l-section-skill__header-heading {
+  //     border-bottom: 2px solid #e0e0e0;
+  //   }
+  // }
+}
