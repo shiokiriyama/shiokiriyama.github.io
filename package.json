@@ -1,0 +1,14 @@
+{
+  "name": "shiokiriyama.github.io",
+  "version": "0.2.0",
+  "description": "The source files of [Shiokiriyama][1] website.",
+  "main": "index.js",
+  "scripts": {
+    "rewrite": "node bin/rewrite.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shiokiriyama/shiokiriyama.github.io/issues"
+  }
+}
