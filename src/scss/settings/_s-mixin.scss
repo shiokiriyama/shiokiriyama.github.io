@@ -125,7 +125,6 @@
 }
 
 @mixin progressInit($width: 100%, $height: revert) {
-  // display: block;
   block-size: $height;
   inline-size: $width;
   // appearance: none;
@@ -139,6 +138,17 @@
   // }
 }
 
+@mixin textureBackground($style, $alpha) {
+  @if $style == 'dot' {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='3' height='3'><rect x='2' y='2' width='1' height='1' fill='black'/></svg>");
+    opacity: $alpha;
+  }
+  @if $style == 'stripe' {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8'><rect width='1' height='1' fill='black'/><rect x='1' y='1' width='1' height='1' fill='black'/><rect x='2' y='2' width='1' height='1' fill='black'/><rect x='3' y='3' width='1' height='1' fill='black'/><rect x='4' y='4' width='1' height='1' fill='black'/><rect x='5' y='5' width='1' height='1' fill='black'/><rect x='6' y='6' width='1' height='1' fill='black'/><rect x='7' y='7' width='1' height='1' fill='black'/></svg>");
+    opacity: $alpha;
+  }
+}
+
 /* ---- Utility ---- */
 
 /* Font Adjust */
@@ -147,7 +157,7 @@
   margin: 0 0 0 calc(100% - (100% - 0.05em));
 }
 
-@mixin u-font-adjust__n40() {
+@mixin font-adjust__n40() {
   font-size: calc(100% - 0.4em); // -40%
   margin: 0 0 0 calc(100% - (100% - 0.1em));
 }
