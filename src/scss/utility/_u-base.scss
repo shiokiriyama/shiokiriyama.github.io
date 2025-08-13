@@ -3,17 +3,35 @@
 @use '../settings' as s;
 
 @layer utility {
-  /* Display */
-  .u-display {
-    &__block {
-      display: block;
+  /* ---- Flex & Grid ---- */
+  .u-flex {
+    display: flex;
+    &__row {
+      flex-direction: row;
     }
-    &__none {
-      display: none;
+    &__column {
+      flex-direction: column;
     }
+    &__between {
+      justify-content: space-between;
+    }
+    &__wrap {
+      flex-wrap: wrap;
+    }
+    &__box-center {
+      justify-content: center;
+      align-items: center;
+    }
+    // &__gap-none {
+    //   gap: 0;
+    // }
   }
 
-  /* Font */
+  .u-grid {
+    display: flex;
+  }
+
+  /* ---- Font ---- */
   .u-font-size {
     &__12 {
       font-size: s.fontSize(12);
@@ -23,7 +41,7 @@
     }
   }
 
-  /* Text */
+  /* ---- Text ---- */
   .u-text {
     &__left {
       text-align: left;
@@ -44,7 +62,7 @@
     text-transform: lowercase;
   }
 
-  /* Margin & Padding */
+  /* ---- Margin & Padding ---- */
   .u-margin {
     &__none {
       margin: 0;

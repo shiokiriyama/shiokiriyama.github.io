@@ -4,7 +4,7 @@
 
 @layer foundation {
   html {
-    overflow-x: hidden;
+    // overflow-x: hidden;
     overflow-y: scroll;
     scroll-behavior: smooth;
   }
@@ -26,11 +26,6 @@
   //     background: s.colorRgba(white, 0.5);
   //   }
   // }
-
-  img {
-    // TODO
-    vertical-align: middle;
-  }
 
   ruby {
     // TODO

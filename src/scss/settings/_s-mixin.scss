@@ -3,29 +3,37 @@
 @use 's-variable' as s;
 @use 'sass:map';
 
-/* ---- Breakpoint ---- */
+/* ---- Breakpoint Mixins ---- */
 
 /**
- * @param {number} [max = null]
+ * Media Query (max-width)
+ * @param {string} $max (e.g. xs, sm, md, lg, xl)
  */
 @mixin mediaQueryUnder($max: null) {
   @if $max == null {
     @error "";
   }
   $_value: map.get(s.$breakpoints, $max);
+  @if $_value == null {
+    @error "";
+  }
   @media (width <= $_value) {
     @content;
   }
 }
 
 /**
- * @param {number} [min = null]
+ * Media Query (min-width)
+ * @param {string} $min (e.g. xs, sm, md, lg, xl)
  */
 @mixin mediaQueryOver($min: null) {
   @if $min == null {
     @error "";
   }
   $_value: map.get(s.$breakpoints, $min);
+  @if $_value == null {
+    @error "";
+  }
   @media ($_value <= width) {
     @content;
   }
@@ -34,90 +42,93 @@
 // @mixin heading() {}
 // @mixin paragraph() {}
 
-/* ---- Text ---- */
+/* ---- Text Mixins ---- */
 
 /**
  * Text Kerning
- *
- * @param {number} [per = 5]
+ * @param {number} $per (e.g. 5)
  */
 @mixin textKerning($per: 5) {
   @if not unitless($per) {
-    @error "This mixin expects a unitless number (e.g. 5)";
+    @error "";
   }
-  $value: $per / 100 * 1em;
-  letter-spacing: $value;
-  text-indent: $value;
+  $_value: $per / 100 * 1em;
+  letter-spacing: $_value;
+  text-indent: $_value;
 }
 
-/* ---- List ---- */
+/* ---- List Mixins ---- */
 
 /**
- * @param {number} [style = none]
- * @param {number} [position = inside]
+ * List Styling
+ * @param {string} $style (e.g. none, decimal, disc)
+ * @param {string} $position (e.g. inside, outside)
  */
-@mixin listBasic($style: none, $position: inside) {
+@mixin listStyle($style: none, $position: inside) {
   margin: 0;
   padding: 0;
-  list-style: $style $position;
+  list-style: $style none $position;
 }
 
 /**
- * @param {number} [style = decimal]
- * @param {number} [position = inside]
+ * Definition List Styling
  */
-@mixin listDecimal($style: decimal, $position: inside) {
-  margin: 0;
-  padding: 0;
-  list-style: $style $position;
-}
-
-@mixin listDesc() {
+@mixin listDefinition() {
   display: flex;
   flex-wrap: wrap;
-  & > dd {
+  > dd {
     margin: 0;
   }
 }
 
-/* ---- Link ---- */
+/* ---- Link Mixins ---- */
 
+/**
+ * Link Text Styling
+ * @param {string} $style (e.g. default, border, invert)
+ */
 @mixin linkText($style: default) {
   text-decoration: none;
   transition: s.$base-animation;
   @if $style == 'default' {
-    &:link,
+    &,
+    &:visited,
     &:hover,
-    &:active {
+    &:active,
+    &:focus {
       color: inherit;
     }
-  }
-  @if $style == 'border' {
+  } @else if $style == 'border' {
     border-bottom: 0 solid yellow;
-    &:link {
+    &,
+    &:visited,
+    &:hover,
+    &:active,
+    &:focus {
       color: inherit;
     }
     &:hover {
-      color: inherit;
       border-bottom: 4px solid yellow;
     }
     &:active {
-      color: inherit;
       border-bottom: 4px solid red;
     }
-  }
-  @if $style == 'invert' {
-    &:link {
+  } @else if $style == 'invert' {
+    &,
+    &:visited,
+    &:hover,
+    &:active,
+    &:focus {
       color: inherit;
     }
     &:hover {
-      color: inherit;
       border-bottom: 4px solid yellow;
     }
     &:active {
-      color: inherit;
       border-bottom: 1px solid red;
     }
+  } @else {
+    @error "";
   }
 }
 
@@ -138,6 +149,8 @@
   // }
 }
 
+/* ---- Background Texture Mixins ---- */
+
 @mixin textureBackground($style, $alpha) {
   @if $style == 'dot' {
     background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='3' height='3'><rect x='2' y='2' width='1' height='1' fill='black'/></svg>");
@@ -149,7 +162,7 @@
   }
 }
 
-/* ---- Utility ---- */
+/* ---- Utility Mixins ---- */
 
 /* Font Adjust */
 @mixin font-adjust__n20() {
