@@ -18,10 +18,10 @@
 /**
  * Spacing Value
  *
- * @param {number} [top = 0]
- * @param {number} [right = 0]
- * @param {number} [bottom = 0]
- * @param {number} [left = 0]
+ * @param {number} $top
+ * @param {number} $right
+ * @param {number} $bottom
+ * @param {number} $left
  * @returns {string} value
  */
 @function spacing($top: 0, $right: 0, $bottom: 0, $left: 0) {

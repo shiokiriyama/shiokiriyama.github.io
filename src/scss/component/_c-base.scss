@@ -6,18 +6,11 @@
   /* ---- Elements ---- */
   .c-list {
     @include s.listStyle(none, inside);
-    // &__item {
-    // }
     &__dec {
       @include s.listStyle(decimal, inside);
-      // &__item {
-      // }
     }
     &__list-def {
       @include s.listDefinition();
-      // &__desc {
-      //   margin: 0;
-      // }
     }
   }
 
@@ -30,7 +23,7 @@
     vertical-align: middle;
   }
 
-  .c-em {
+  .c-emphasis {
     font-weight: 400;
     font-style: normal;
   }

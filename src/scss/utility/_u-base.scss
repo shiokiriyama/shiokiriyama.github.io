@@ -28,7 +28,7 @@
   }
 
   .u-grid {
-    display: flex;
+    display: grid;
   }
 
   /* ---- Font ---- */
@@ -54,18 +54,22 @@
     }
   }
 
-  .u-uppercase {
-    text-transform: uppercase;
-  }
-
-  .u-lowercase {
-    text-transform: lowercase;
+  .u-transform {
+    &__upper {
+      text-transform: uppercase;
+    }
+    &__lower {
+      text-transform: lowercase;
+    }
   }
 
   /* ---- Margin & Padding ---- */
   .u-margin {
     &__none {
       margin: 0;
+    }
+    &__lt8 {
+      margin: s.spacing(0, 0, 0, 1);
     }
   }
 
