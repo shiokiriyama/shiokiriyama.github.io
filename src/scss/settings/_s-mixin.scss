@@ -7,12 +7,10 @@
 
 /**
  * Media Query (max-width)
- * @param {string} $max (e.g. xs, sm, md, lg, xl)
+ *
+ * @param {string} $max (e.g. small, medium, large)
  */
-@mixin mediaQueryUnder($max: null) {
-  @if $max == null {
-    @error "";
-  }
+@mixin mediaQueryUnder($max: large) {
   $_value: map.get(s.$breakpoints, $max);
   @if $_value == null {
     @error "";
@@ -24,12 +22,10 @@
 
 /**
  * Media Query (min-width)
+ *
  * @param {string} $min (e.g. xs, sm, md, lg, xl)
  */
-@mixin mediaQueryOver($min: null) {
-  @if $min == null {
-    @error "";
-  }
+@mixin mediaQueryOver($min: small) {
   $_value: map.get(s.$breakpoints, $min);
   @if $_value == null {
     @error "";
@@ -46,6 +42,7 @@
 
 /**
  * Text Kerning
+ *
  * @param {number} $per (e.g. 5)
  */
 @mixin textKerning($per: 5) {
@@ -61,6 +58,7 @@
 
 /**
  * List Styling
+ *
  * @param {string} $style (e.g. none, decimal, disc)
  * @param {string} $position (e.g. inside, outside)
  */
@@ -85,6 +83,7 @@
 
 /**
  * Link Text Styling
+ *
  * @param {string} $style (e.g. default, border, invert)
  */
 @mixin linkText($style: default) {

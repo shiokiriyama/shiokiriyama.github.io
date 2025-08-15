@@ -3,13 +3,21 @@
 @use '../settings' as s;
 
 @layer project {
-/*   .p-record {
+  .p-skill {
+    background: s.colorRgba(black, 1);
+    color: s.colorRgba(white, 1);
+  }
+  .p-record {
+    background: s.colorRgba(white, 1);
+    color: s.colorRgba(black, 1);
+  }
+  /*   .p-record {
     display: flex;
     justify-content: center;
     background: white;
     color: black;
     &__inner {
-      max-width: s.blockWidth(640);
+      max-width: s.(640);
     }
     &__heading {
       @include s.textKerning(-10);

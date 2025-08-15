@@ -32,12 +32,10 @@
   }
 
   /* ---- Font ---- */
-  .u-font-size {
-    &__12 {
-      font-size: s.fontSize(12);
-    }
-    &__14 {
-      font-size: s.fontSize(14);
+  @each $name, $size in s.$fonts {
+    $_short: str-slice($name, 6);
+    .u-font-size__#{$_short} {
+      font-size: $size;
     }
   }
 

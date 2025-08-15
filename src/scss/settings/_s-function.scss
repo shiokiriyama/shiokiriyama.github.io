@@ -6,12 +6,11 @@
 /**
  * Block Width Value
  *
- * @param {number} [size = 320]
- * @returns {string} value
+ * @param {number} $size
+ * @returns {string} $_value
  */
-@function blockWidth($size: 320) {
-  $_key: 'width-' + $size;
-  $_value: map-get(s.$blocks, $_key);
+@function blockWidth($size: medium) {
+  $_value: map-get(s.$section-width, $_key);
   @return $_value;
 }
 
@@ -22,7 +21,7 @@
  * @param {number} $right
  * @param {number} $bottom
  * @param {number} $left
- * @returns {string} value
+ * @returns {string} $_value
  */
 @function spacing($top: 0, $right: 0, $bottom: 0, $left: 0) {
   @if $top + $right + $bottom + $left == 0 {
@@ -39,8 +38,8 @@
 /**
  * Font Size Value
  *
- * @param {number} [size = 16]
- * @returns {string} value
+ * @param {number} $size
+ * @returns {string} $_value
  */
 @function fontSize($size: 16) {
   @if not unitless($size) {
@@ -57,8 +56,9 @@
 /**
  * Color RGBA Value
  *
- * @param {number} color
- * @returns {string} [alpha = 1]
+ * @param {number} $color
+ * @param {number} $alpha
+ * @returns {string} $_value
  */
 @function colorRgba($color, $alpha: 1) {
   $_value: map-get(s.$colors, $color);

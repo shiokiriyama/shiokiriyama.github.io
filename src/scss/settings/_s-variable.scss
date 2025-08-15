@@ -287,34 +287,44 @@ $colors: (
 ) !default;
 
 /* Base Font Size */
-@function generateFontSizes() {
-  $result: ();
-  @for $i from 8 through 160 {
-    $key: 'size-#{$i}';
-    $value: $i * 0.0625rem;
-    $result: map.set($result, $key, $value);
+$base-font-size: 16px !default;
+
+/**
+ * Generate Font Sizes
+ * @param {number} $min (Minimum font size in px)
+ * @param {number} $max (Maximum font size in px)
+ * @param {number} $step (Increment step in px)
+ * @returns {map} $_result (Font size map)
+ */
+@function generateFontSizes($min: 12, $max: 160, $step: 2) {
+  $_result: ();
+  $i: $min;
+  @while $i <= $max {
+    $_key: 'size-#{$i}';
+    $_value: ($i * 0.0625) * 1rem;
+    $_result: map.set($_result, $_key, $_value);
+    $i: $i + $step;
   }
-  @return $result;
+  @return $_result;
 }
 $fonts: generateFontSizes() !default;
 
-/* Base Block Width */
-$blocks: (
-  width-320: 320px,
-  width-480: 480px,
-  width-640: 640px,
-  width-800: 800px,
-  width-960: 960px,
-  width-1280: 1280px,
+/* Base Section Width */
+$section-width: (
+  xsmall: 320px,
+  small: 480px,
+  medium: 640px,
+  large: 800px,
+  xlarge: 960px,
 ) !default;
 
 /* Breakpoint */
 $breakpoints: (
-  xs: 375px,
-  sm: 480px,
-  md: 640px,
-  lg: 960px,
-  xl: 1200px,
+  xsmall: 375px,
+  small: 480px,
+  medium: 640px,
+  large: 960px,
+  xlarge: 1200px,
 ) !default;
 
 /* Base Font Family */
