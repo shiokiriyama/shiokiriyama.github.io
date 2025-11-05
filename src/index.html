@@ -1,39 +1,151 @@
 <!doctype html>
-<html class="no-js" lang="ja">
+<html lang="ja" class="no-js">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shiokiriyama</title>
-    <meta name="description" content="シオキリヤマは美しい自然と歴史を楽しめる観光スポットです。">
+    <meta name="description" content="塩切山は美しい自然と歴史を楽しめる観光スポットです。">
     <meta property="og:title" content="Shiokiriyama">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://shiokiriyama.github.io/">
     <meta property="og:image" content="https://shiokiriyama.github.io/ogp.jpg">
-    <meta property="og:image:alt" content="シオキリヤマの絶景">
+    <meta property="og:image:alt" content="塩切山の絶景">
     <link rel="stylesheet" href="css/style.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;400;700&display=swap">
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&=:0123456789&display=swap"> -->
-    <script src="js/canvas.js" defer></script>
-    <script src="js/script.js" defer></script>
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&text=0123456789&display=swap"> -->
+    <!-- <script src="js/canvas.js" defer></script>
+    <script src="js/script.js" defer></script> -->
     <link href="favicon.svg" rel="icon" type="image/svg+xml">
     <link rel="manifest" href="manifest.json">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', {
+        send_page_view: true,
+        cookie_flags: 'SameSite=None;Secure'
+      });
+    </script>
+
+    <script>
+      // auth.js
+      /**
+       * Sets up password-protected links on the page.
+       *
+       * Call the returned `init` function when you want to attach handlers (e.g., after DOM is ready).
+       *
+       * @param {Object} options - Configuration options
+       * @param {string} [options.selector=".protected-link"] - CSS selector for target links
+       * @param {string} [options.password="pass"] - Password required for access
+       * @param {"redirect"|"silent"} [options.errorMode="redirect"] - Behavior on authentication failure
+       * @param {string} [options.promptMessage="パスワードを入力してください"] - Message shown in prompt()
+       *
+       * @example
+       * const initProtected = setupProtectedLinks({
+       *   selector: ".protected-link",
+       *   password: "secret123",
+       *   errorMode: "redirect",
+       *   promptMessage: "管理用パスワードを入力してください"
+       * });
+       *
+       * // call when appropriate, e.g.:
+       * document.addEventListener("DOMContentLoaded", initProtected);
+       */
+      function setupProtectedLinks(options = {}) {
+        const {
+          selector = ".protected-link",
+          password = "pass",
+          errorMode = "redirect",
+          promptMessage = "パスワードを入力してください"
+        } = options;
+
+        const validAuth = btoa(password);
+
+        /**
+         * Redirects to /404.html if errorMode is "redirect".
+         * If errorMode is "silent", does nothing.
+         */
+        const redirectToError = () => {
+          if (errorMode === "redirect") {
+            location.href = "/404.html";
+          }
+        };
+
+        /**
+         * Click handler factory for a link element.
+         * @param {HTMLAnchorElement} link
+         * @returns {Function}
+         */
+        const makeHandler = (link) => (e) => {
+          e.preventDefault();
+
+          const input = prompt(promptMessage);
+          if (!input) {
+            redirectToError();
+            return;
+          }
+
+          if (btoa(input) === validAuth) {
+            // Respect target attribute if present and equals "_blank"
+            if (link.target && link.target.toLowerCase() === "_blank") {
+              window.open(link.href, "_blank");
+            } else {
+              location.href = link.href;
+            }
+          } else {
+            redirectToError();
+          }
+        };
+
+        /**
+         * Attach handlers to matching links.
+         * Safe to call multiple times; same element won't get duplicate handlers.
+         */
+        const init = () => {
+          const links = document.querySelectorAll(selector);
+          links.forEach(link => {
+            if (link._protectedBound) return;
+            const handler = makeHandler(link);
+            link.addEventListener("click", handler);
+            link._protectedBound = true;
+          });
+        };
+
+        return init;
+      }
+    </script>
+
   </head>
 
   <body>
-    <div class="root">
+    <div class="l-root">
+
+      <p>{{PARAGRAPH}}</p>
+
+      <!-- 仮置き -->
+      <!-- <div>
+        <ul>
+          <li><a href="https://github.com/shiokiriyama" target="_blank" rel="external noopener noreferrer">GitHub</a></li>
+          <li><a href="https://docs.google.com/spreadsheets/d/1gwBu8o9fw659jRspVid1O1mukQ8Krl6LfUuMaEIk59k/edit?usp=drive_link" target="_blank" rel="external noopener noreferrer">Google Spreadsheet Note</a></li>
+          <li><a href="https://docs.google.com/document/d/1gyxwf45JAc4dfEVhMGv3ekeizmUM8ydepmI6JA80qWA/edit?usp=drive_link" target="_blank" rel="external noopener noreferrer">Google Document Note</a></li>
+          <li><a href="https://account.box.com/login" target="_blank" rel="external noopener noreferrer">Box</a></li>
+        </ul>
+      </div> -->
+
       <!-- home-bg -->
-      <div class="c-home-bg">
+      <!-- <div class="c-home-bg">
         <canvas class="js-homeBgLayer0">Screen-idle ver.0.1 By Canvas API</canvas>
         <canvas class="js-homeBgLayer1">Cyber-theme Clock ver.0.1 By Canvas API</canvas>
-      </div>
+      </div> -->
 
       <!-- header -->
       <header class="header">
-        <p class="header__heading">
+        <!-- <p class="header__heading">
           <a class="header__link" href="">Shiokiriyama
-            <!-- <ruby>Shiokiriyama<rt>シオキリヤマ</rt></ruby> -->
+            <ruby>Shiokiriyama<rt>シオキリヤマ</rt></ruby>
           </a>
         </p>
         <nav class="header-navi">
@@ -48,12 +160,12 @@
               <a class="header-navi__list-link" data-index-number="2" href="">Records</a>
             </li>
           </ul>
-        </nav>
+        </nav> -->
       </header>
 
       <!-- main -->
       <main class="l-main">
-        <section class="l-section p-cover" data-page-number="0">
+        <!-- <section class="l-section p-cover" data-page-number="0">
           <div class="l-section__center">
             {% include concept.html %}
           </div>
@@ -209,15 +321,15 @@
             </ol>
             <p>※2025年時点での概算</p>
           </div>
-        </section>
+        </section> -->
       </main>
 
       <!-- footer -->
       <footer class="footer">
-        <nav class="footer-navi">
+        <!-- <nav class="footer-navi">
           <ul class="footer-navi__list c-list">
             <li class="footer-navi__list-item">
-              <a class="footer-navi__list-link" href="">Intro<!-- Concerning --></a>
+              <a class="footer-navi__list-link" href="">Intro</a>
             </li>
             <li class="footer-navi__list-item">
               <a class="footer-navi__list-link" href="">Note</a>
@@ -242,8 +354,9 @@
         </ul>
         <p class="footer-credit">
           <small class="footer-credit__copyright">&copy; /(Shio)\s?(kiriyama)/</small>
-        </p>
+        </p> -->
       </footer>
+
     </div>
   </body>
 
