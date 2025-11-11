@@ -1,6 +1,9 @@
 # Visual Studio Code
 .vscode/*
 
+# Dependency directories
+node_modules/
+
 # Python Environments
 *.py[codz]
 .env

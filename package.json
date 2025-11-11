@@ -13,5 +13,8 @@
   },
   "bugs": {
     "url": "https://github.com/shiokiriyama/shiokiriyama.github.io/issues"
+  },
+  "devDependencies": {
+    "sass": "^1.94.0"
   }
 }
