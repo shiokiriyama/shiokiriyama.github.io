@@ -1,0 +1,105 @@
+@charset 'utf-8';
+
+@use '../settings.scss' as s;
+
+@layer layout {
+  .root {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100svh; // height: 100dvh; max-height: 100lvh;
+    font-family: s.$base-font-family-sans-serif;
+    font-feature-settings: normal;
+    font-kerning: normal;
+    font-optical-sizing: auto;
+    font-weight: 400;
+  }
+
+  .header {
+    position: relative;
+    &__heading {
+      @include s.textKerning(-5);
+      margin: s.spacing(0);
+      line-height: 1;
+      text-align: center;
+      // isolation: isolate;
+    }
+    &__link {
+      @include s.linkText();
+      display: inline-block;
+      font-size: s.fontSize(20);
+      // font-size: clamp(s.$font-size-64, 20vw, s.$font-size-160);
+      font-weight: 700;
+      text-transform: uppercase;
+      // mix-blend-mode: difference;
+      color: s.colorRgba(gray-800, 1);
+      text-box: trim-both cap alphabetic;
+    }
+  }
+
+  .header-navi {
+    position: fixed;
+    top: 0;
+    &__list {
+      @include s.listStyle(none, inside);
+    }
+    &__list-item {
+      writing-mode: vertical-lr;
+    }
+    &__list-link {
+      @include s.textKerning(5);
+      border-inline-end: 1px solid s.colorRgba(gray-600, 1);
+      font-size: s.fontSize(14);
+      text-decoration: none;
+      text-transform: uppercase;
+      color: s.colorRgba(gray-600, 1);
+    }
+  }
+
+  /* ---- Main ---- */
+  .l-main {
+    display: grid;
+    // grid-template-rows: repeat(3, 100svh);
+  }
+
+  /* ---- Section ---- */
+  .l-section {
+    &__inner {
+      max-width: 800px;
+    }
+    &__center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100svh;
+    }
+    // &__header {
+    //   position: sticky;
+    //   top: 0;
+    //   container-type: scroll-state;
+    // }
+  }
+
+  // @container scroll-state(stuck: top) {
+  //   .l-section-skill__header-heading {
+  //     border-bottom: 2px solid #e0e0e0;
+  //   }
+  // }
+
+  /* ---- Flex ---- */
+  .l-flex {
+    display: flex;
+  }
+
+  .l-horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .l-vertical {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---- Grid ---- */
+}

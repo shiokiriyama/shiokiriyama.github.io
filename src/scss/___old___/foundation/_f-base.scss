@@ -1,0 +1,36 @@
+@charset 'utf-8';
+
+@use '../settings.scss' as s;
+
+@layer foundation {
+  html {
+    // overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  // h1,
+  // h2,
+  // h3,
+  // h4,
+  // h5,
+  // h6,
+  // p,
+  // li {
+  //   &::selection {
+  //     color: s.colorRgba(black, 1);
+  //     background: s.colorRgba(white, 0.5);
+  //   }
+  // }
+
+  ruby {
+    // TODO
+    rt {
+      display: none;
+    }
+  }
+}

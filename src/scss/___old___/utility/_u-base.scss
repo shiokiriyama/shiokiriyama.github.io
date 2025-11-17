@@ -1,0 +1,110 @@
+@charset 'utf-8';
+
+@use '../settings.scss' as s;
+
+@layer utility {
+  /* ---- Flex & Grid ---- */
+  .u-flex {
+    display: flex;
+    &__row {
+      flex-direction: row;
+    }
+    &__column {
+      flex-direction: column;
+    }
+    &__between {
+      justify-content: space-between;
+    }
+    &__wrap {
+      flex-wrap: wrap;
+    }
+    &__box-center {
+      justify-content: center;
+      align-items: center;
+    }
+    // &__gap-none {
+    //   gap: 0;
+    // }
+  }
+
+  .u-grid {
+    display: grid;
+  }
+
+  /* ---- Font ---- */
+  // @each $name, $size in s.$fonts {
+  //   $_short: str-slice($name, 6);
+  //   .u-font-size__#{$_short} {
+  //     font-size: $size;
+  //   }
+  // }
+
+  /* ---- Text ---- */
+  .u-text {
+    &__left {
+      text-align: left;
+    }
+    &__center {
+      text-align: center;
+    }
+    &__right {
+      text-align: right;
+    }
+  }
+
+  .u-transform {
+    &__upper {
+      text-transform: uppercase;
+    }
+    &__lower {
+      text-transform: lowercase;
+    }
+  }
+
+  /* ---- Margin & Padding ---- */
+  .u-margin {
+    &__none {
+      margin: 0;
+    }
+    &__lt8 {
+      margin: s.spacing(0, 0, 0, 1);
+    }
+  }
+
+  .u-padding {
+    &__none {
+      padding: 0;
+    }
+  }
+}
+
+/* Kerning */
+// .u-kerning {
+//   &__p5 {
+//     letter-spacing: 0.05em; // 5%
+//   }
+//   &__p10 {
+//     letter-spacing: 0.1em; // 10%
+//   }
+//   &__p15 {
+//     letter-spacing: 0.15em; // 15%
+//   }
+//   &__n5 {
+//     letter-spacing: -0.05em; // -5%
+//   }
+//   &__n10 {
+//     letter-spacing: -0.1em; // -10%
+//   }
+//   &__n15 {
+//     letter-spacing: -0.15em; // -15%
+//   }
+// }
+
+/* Color */
+// .u-text-white {
+//   @include s.colorTxt(white, 1);
+// }
+
+// .u-text-black {
+//   @include s.colorTxt(black, 1);
+// }

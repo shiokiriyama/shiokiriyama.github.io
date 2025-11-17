@@ -4,8 +4,9 @@
   "description": "The source files of [Shiokiriyama][1] website.",
   "main": "index.js",
   "scripts": {
-    "rewrite": "node bin/rewrite.js",
-    "htmlminify": "node bin/htmlminify.js",
+    "build:rewrite": "node bin/rewrite.js",
+    "build:htmlminify": "node bin/htmlminify.js",
+    "sass": "sass src/scss/style.scss docs/css/style.css --style=compressed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",
