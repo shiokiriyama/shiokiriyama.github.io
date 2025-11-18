@@ -1,4 +1,4 @@
-// rewrite.js (ESM)
+// htmlminify.js (ESM)
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -6,14 +6,6 @@ import { fileURLToPath } from 'node:url';
 // __dirnameをESMで再現
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-// parts
-const parts = [
-  // path.join(__dirname, 'src', 'index.html'),
-  // path.join(__dirname, 'src', 'header.html'),
-  // path.join(__dirname, 'src', 'body.html'),
-  // path.join(__dirname, 'src', 'footer.html'),
-];
 
 // input directory
 const templatePath = path.join(__dirname, '../src/index.html');
@@ -27,13 +19,12 @@ if (!fs.existsSync(outputDir)) {
 }
 
 // process
-const replacements = {
-  '{{PARAGRAPH}}': '静的に書き換えました。',
-};
-for (const [placeholder, value] of Object.entries(replacements)) {
-  html = html.replace(new RegExp(placeholder, 'g'), value);
-}
+// delete comment (<!-- ～ -->)
+html = html.replace(/<!--[\s\S]*?-->/g, ''); // 非貪欲マッチ
+// delete line breaks and unnecessary whitespace
+html = html.replace(/\s*\n\s*/g, ''); // 改行とその周辺の空白を除去
+html = html.replace(/\s{2,}/g, ' ');  // 連続する空白を1つに
 
 // save
 fs.writeFileSync(outputPath, html, 'utf8');
-console.log('HTMLテンプレートを静的に書き換えました。');
+console.log('HTMLコメントと改行を削除して軽量化しました。');

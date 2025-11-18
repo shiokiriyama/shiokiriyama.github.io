@@ -1,19 +1,17 @@
 # Shiokiriyama
 
-The source files of [Shiokiriyama][1] website.
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-deployed-brightgreen)](https://shiokiriyama.github.io/)
 
-[1]: https://shiokiriyama.github.io/
+The source files of [Shiokiriyama](https://shiokiriyama.github.io/), my personal website.
 
-- ~~pyhton 3.13.2~~
-- ~~pipenv 2025.0.4~~
-- ~~pip 25.1.1~~
+## Overview
+
+Shiokiriyama is a personal website to showcase my projects, posts, and profile. It is a simple static site deployed via **GitHub Pages**.
 
 ## Reference
 
-- ~~[Flask](https://flask.palletsprojects.com/en/stable/)~~
-- [github/gitignore](https://github.com/github/gitignore)
+- [Github gitignore](https://github.com/github/gitignore)
 
 ## License
 
-- ~~[MIT]()~~
-- ~~[CC0-1.0](./LICENSE).~~
+- This project is licensed under [CC0-1.0](./LICENSE).
