@@ -23,7 +23,7 @@
   "scripts": {
     "build:minify": "node bin/htmlminify.js",
     "build:rewrite": "node bin/rewrite.js",
-    "build:sass": "sass src/scss/style.scss docs/css/style.min.css --style=compressed",
+    "build:sass": "sass src/scss/style.scss docs/css/style.min.css --style=compressed --watch",
     "copy": "node bin/copy.js"
   },
   "type": "module",
