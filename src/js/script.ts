@@ -1,9 +1,26 @@
 /*! createdAt: 2025-04-17T14:11:47+09:00 */
-/*! updatedAt: 2025-11-19T13:55:03+09:00 */
+/*! updatedAt: 2025-11-24T22:09:24+09:00 */
 
 import { debounce } from './debounce.js';
 
-/* ---- DOMContentLoaded listener ---- */
+/* Event Types
+ * [Mouse]
+ * click / dblclick / mousedown / mouseup / mousemove / mouseenter / mouseleave / mouseover / mouseout / wheel
+ * [Keyboard]
+ * keydown / keyup / keypress
+ * [Touch]
+ * touchstart / touchmove / touchend / touchcancel
+ * [Pointer]
+ * pointerdown / pointerup / pointermove / pointerenter / pointerleave / pointercancel
+ * [Form / Input]
+ * input / change / blur / focus / reset / submit / select
+ * [Window / Browser]
+ * load / resize / scroll / unload / beforeunload / hashchange / popstate
+ * [Lifecycle]
+ * DOMContentLoaded / DOMFocusIn(*rare) / DOMFocusOut(*rare)
+ * [Other]
+ * error / abort / contextmenu / drag / drop
+ */
 document.addEventListener('DOMContentLoaded', () => {
   // Actions to perform after DOM is fully loaded
   /**
@@ -28,8 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   */
 });
 
-/* ---------------------------------- */
-/* ---------------------------------- */
+/* ================================== */
 
 /* ---- Check ---- */
 const debugCheck = {
@@ -98,52 +114,3 @@ const debugConsole = {
     }
   },
 };
-
-/**
- * addEventListener type Event.type
- *
- * [MOUSE]
- * click: クリック時
- * dblclick: ダブルクリック時
- * mousedown: マウス押下時
- * mouseenter: カーソルが要素に入った時(子要素では発生しない)
- * mouseleave: カーソルが要素から外れた時(子要素では発生しない)
- * mousemove: カーソル移動時
- * mouseout: カーソルが要素から外れた時(子要素でも発生)
- * mouseover: カーソルが要素に入った時(子要素でも発生)
- * mouseup: ボタンを離した時
- * wheel:
-
- * [KEYBOARD]
- * keydown: キー押下時
- * keypress: キーを押して離した時
- * keyup: キーを離した時
-
- * [TOUCH]
- * touchcancel:
- * touchend:
- * touchmove:
- * touchstart:
-
- * [INPUT]
- * blur: コントロールがフォーカスを失った時
- * change: コントロールの値の変化時
- * focus コントロールがフォーカスを受け取った時
- * reset: 'reset'ボタン押下時発火
- * select: 属性値が'text'のinput要素・textarea要素の文字が選択された時
- * submit: 'submit'ボタン押下時
-
- * [BROWSER]
- * load: 全リソースの読み込みが完了時
- * resize: コントロールのサイズ変更時
- * scroll: スクロールバー位置変更時
-
- * [DOM]
- * DOMContentLoaded: サイトの読み込み完了時(画像などのリソースは含まない)
- * DOMActivate: ターゲットがアクティブ時
- * DOMFocusIn: ターゲットがフォーカスを受け取った時
- * DOMFocusOut: ターゲットがフォーカスを失った時
-
- * [ETC]
- * error: エラー発生時
- */
