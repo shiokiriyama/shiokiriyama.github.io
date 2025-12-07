@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // input directory
-const html = fs.readFileSync(join(__dirname, 'docs', 'index.html'), 'utf-8');
+const html = fs.readFileSync(join(__dirname, '..', 'docs', 'index.html'), 'utf-8');
 
 // process
 const HOST = process.env.HOST || '127.0.0.1';

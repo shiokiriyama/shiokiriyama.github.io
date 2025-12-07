@@ -26,11 +26,11 @@
   "scripts": {
     "build:minify": "node bin/htmlminify.js",
     "build:rewrite": "node bin/rewrite.js",
-    "build:ts": "tsc",
     "build:sass": "sass src/scss/style.scss docs/css/style.min.css --style=compressed",
+    "build:ts": "tsc",
     "copy": "node bin/copy.js",
     "dev": "npm-run-all --parallel watch:sass watch:ts server",
-    "server": "nodemon --watch bin/server.js --watch docs --ext js,json,html --exec \"node server.js\"",
+    "server": "nodemon --watch bin/server.js --watch docs --ext js,json,html --exec \"node bin/server.js\"",
     "watch:sass": "sass src/scss/style.scss docs/css/style.min.css --style=compressed --watch",
     "watch:ts": "tsc --watch"
   },
