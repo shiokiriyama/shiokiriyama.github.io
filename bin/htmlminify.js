@@ -1,6 +1,11 @@
-// htmlminify.js (CJS)
-const fs = require('fs');
-const path = require('path');
+// htmlminify.js (ESM)
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+// __dirnameをESMで再現
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // input directory
 const templatePath = path.join(__dirname, '../src/index.html');
