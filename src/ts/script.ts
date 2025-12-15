@@ -53,16 +53,26 @@ const debugCheck = {
    * debug check function
    * @return {boolean}
    */
-  isArray: (val) => Array.isArray(val),
-  isBoolean: (val) => typeof val === 'boolean',
-  isEmptyObject: (obj) => Object.keys(obj).length === 0,
-  isFunction: (val) => typeof val === 'function',
-  isNull: (val) => val === null,
-  isNumber: (val) => typeof val === 'number',
-  isObject: (val) => typeof val === 'object' && val !== null,
-  isString: (val) => typeof val === 'string',
-  isSymbol: (val) => typeof val === 'symbol',
-  isUndefined: (val) => typeof val === 'undefined',
+  /* 配列判定 */
+  isArray: (val: unknown): val is unknown[] => Array.isArray(val),
+  /* 真偽値判定 */
+  isBoolean: (val: unknown): val is boolean => typeof val === 'boolean',
+  /* 空の純粋オブジェクト判定  */
+  isEmptyObject: (obj: object): boolean => Object.keys(obj).length === 0,
+  /* 関数判定 */
+  isFunction: (val: unknown): val is (...args: any[]) => unknown => typeof val === 'function',
+  /* null判定 */
+  isNull: (val: unknown): val is null => val === null,
+  /* 数値判定 */
+  isNumber: (val: unknown): val is number => typeof val === 'number',
+  /* 純粋オブジェクト判定 */
+  isObject: (val: unknown): val is object => typeof val === 'object' && val !== null && !Array.isArray(val),
+  /* 文字列判定 */
+  isString: (val: unknown): val is string => typeof val === 'string',
+  /* シンボル判定 */
+  isSymbol: (val: unknown): val is symbol => typeof val === 'symbol',
+  /* undefined判定 */
+  isUndefined: (val: unknown): val is undefined => typeof val === 'undefined',
 };
 
 /* ---- Debug ---- */
@@ -71,46 +81,40 @@ const debugConsole = {
    * debug console function
    * @param {any}
    */
-  log: (message) => {
-    try {
+  /* 標準ログ出力 */
+  log: (message: unknown): void => {
+    if (typeof console !== 'undefined' && console.log) {
       console.log(message);
-    } catch (e) {
-      console.error(e);
     }
   },
-  count: (message) => {
-    try {
-      console.count(message);
-    } catch (e) {
-      console.error(e);
+  /* 呼び出し回数をカウント */
+  count: (label?: string): void => {
+    if (typeof console !== 'undefined' && console.count) {
+      console.count(label);
     }
   },
-  time: (message = 'process(ms)') => {
-    try {
-      console.time(message);
-    } catch (e) {
-      console.error(e);
+  /* 処理時間計測開始 */
+  time: (label: string = 'process(ms)'): void => {
+    if (typeof console !== 'undefined' && console.time) {
+      console.time(label);
     }
   },
-  timeEnd: (message = 'process(ms)') => {
-    try {
-      console.timeEnd(message);
-    } catch (e) {
-      console.error(e);
+  /* 処理時間計測終了 */
+  timeEnd: (label: string = 'process(ms)'): void => {
+    if (typeof console !== 'undefined' && console.timeEnd) {
+      console.timeEnd(label);
     }
   },
-  warn: (message) => {
-    try {
+  /* 警告出力 */
+  warn: (message: unknown): void => {
+    if (typeof console !== 'undefined' && console.warn) {
       console.warn(message);
-    } catch (e) {
-      console.error(e);
     }
   },
-  assert: (condition, message) => {
-    try {
+  /* 条件が false の場合に警告 */
+  assert: (condition: boolean, message?: string): void => {
+    if (typeof console !== 'undefined' && console.assert) {
       console.assert(condition, message);
-    } catch (e) {
-      console.error(e);
     }
   },
 };
