@@ -25,21 +25,25 @@
     <!-- stylesheet -->
     <link rel="stylesheet" href="css/style.min.css">
     <!-- javascript -->
-    <script src="js/script.js" type="module" defer></script>
+    <script src="js/main.js" type="module" defer></script>
     <!-- Google Tag -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX', {
-        send_page_view: true,
-        cookie_flags: 'SameSite=None;Secure'
-      });
-    </script>
+    <script>(function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+          'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+            'https://www.googletagmanager.com/gtm.js?id=GTM-M5MBN9D9' + dl; f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-M5MBN9D9');</script>
+    <!-- End Google Tag Manager -->
   </head>
 
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5MBN9D9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+
     <div class="l-root">
 
       <!-- header -->
@@ -62,6 +66,13 @@
             <li>regedit</li>
             <li>taskmgr</li>
           </ul>
+        </section>
+        <section>
+          <p>Command</p>
+          <li>certutil [-hashfile] (file_path) [hash_algorithm]</li>
+          <li>chcp [437][932]</li>
+          <li>ipconfig [/all]</li>
+          <li>ping (target_name)</li>
         </section>
       </main>
       <!-- /main -->
