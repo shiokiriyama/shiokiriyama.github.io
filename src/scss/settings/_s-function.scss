@@ -1,0 +1,70 @@
+@charset 'utf-8';
+
+@use 's-variable.scss' as s;
+@use 'sass:map';
+
+/**
+ * Block Width Value
+ *
+ * @param {number} $size
+ * @returns {string} $_value
+ */
+@function blockWidth($size: medium) {
+  $_value: map-get(s.$section-width, $_key);
+  @return $_value;
+}
+
+/**
+ * Spacing Value
+ *
+ * @param {number} $top
+ * @param {number} $right
+ * @param {number} $bottom
+ * @param {number} $left
+ * @returns {string} $_value
+ */
+@function spacing($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  @if $top + $right + $bottom + $left == 0 {
+    @return 0;
+  }
+  $_top: s.$base-spacing * $top;
+  $_right: s.$base-spacing * $right;
+  $_bottom: s.$base-spacing * $bottom;
+  $_left: s.$base-spacing * $left;
+  $_value: $_top $_right $_bottom $_left;
+  @return $_value;
+}
+
+/**
+ * Font Size Value
+ *
+ * @param {number} $size
+ * @returns {string} $_value
+ */
+@function fontSize($size: 16) {
+  @if not unitless($size) {
+    @error "This function expects a unitless number (e.g. 16)";
+  }
+  $_key: 'size-' + $size;
+  $_value: map-get(s.$fonts, $_key);
+  @if $_value == null {
+    @error "Not found in target map.";
+  }
+  @return $_value;
+}
+
+/**
+ * Color RGBA Value
+ *
+ * @param {number} $color
+ * @param {number} $alpha
+ * @returns {string} $_value
+ */
+@function colorRgba($color, $alpha: 1) {
+  $_value: map-get(s.$colors, $color);
+  @if $_value == null {
+    @error "Not found in target map.";
+  }
+  $_value: rgba($_value, $alpha);
+  @return $_value;
+}

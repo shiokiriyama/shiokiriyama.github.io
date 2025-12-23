@@ -1,4 +1,4 @@
 /*!
  * createdAt: 2025-04-08T12:53:53+09:00
  * updatedAt: 2025-12-10T20:20:11+09:00
- */@layer foundation{html{overflow-y:scroll;scroll-behavior:smooth}body{margin:0}ruby rt{display:none}}@layer foundation, project, layout, component, utility/*# sourceMappingURL=style.min.css.map */
+ */@layer foundation{html{overflow-y:scroll;scroll-behavior:smooth}body{margin:0}ruby rt{display:none}}@layer component{.root{height:100svh;background:#000;color:#fff}}@layer foundation, project, layout, component, utility/*# sourceMappingURL=style.min.css.map */
