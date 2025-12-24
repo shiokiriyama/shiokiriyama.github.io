@@ -4,10 +4,10 @@
  */
 
 @use 'foundation';
-// @use 'layout';
+@use 'layout';
 @use 'component';
-// @use 'project';
-// @use 'utility';
+@use 'project';
+@use 'utility';
 
 @layer foundation, project, layout, component, utility;
 
