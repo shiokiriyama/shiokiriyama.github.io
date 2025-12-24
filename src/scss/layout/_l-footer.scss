@@ -1,8 +1,7 @@
-@charset 'utf-8';
-
-@use '../settings.scss' as s;
+@use '../settings' as s;
 
 @layer layout {
+  /*
   .footer {
     position: relative;
     display: flex;
@@ -78,4 +77,5 @@
       font-size: s.fontSize(12);
     }
   }
+ */
 }

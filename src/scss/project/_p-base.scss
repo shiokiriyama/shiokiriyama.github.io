@@ -1,8 +1,7 @@
-@charset 'utf-8';
-
-@use '../settings.scss' as s;
+@use '../settings' as s;
 
 @layer project {
+  /*
   .p-skill {
     background: s.colorRgba(black, 1);
     color: s.colorRgba(white, 1);
@@ -11,7 +10,7 @@
     background: s.colorRgba(white, 1);
     color: s.colorRgba(black, 1);
   }
-  /*   .p-record {
+  .p-record {
     display: flex;
     justify-content: center;
     background: white;
