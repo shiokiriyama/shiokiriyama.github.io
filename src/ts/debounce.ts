@@ -17,10 +17,7 @@ export function debounce<T extends (...args: any[]) => any>(
 ): DebouncedFunction<T> {
   let timer: ReturnType<typeof setTimeout> | null = null;
 
-  const debounced = function (
-    this: ThisParameterType<T>,
-    ...args: Parameters<T>
-  ) {
+  const debounced = function (this: ThisParameterType<T>, ...args: Parameters<T>) {
     if (timer) {
       clearTimeout(timer);
     }
