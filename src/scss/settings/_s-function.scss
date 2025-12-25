@@ -8,7 +8,7 @@
  * @returns {string} $_value
  */
 @function blockWidth($size: medium) {
-  $_value: map-get(s.$section-width, $_key);
+  $_value: map.get(s.$section-width, $_key);
   @return $_value;
 }
 
@@ -44,7 +44,7 @@
     @error "This function expects a unitless number (e.g. 16)";
   }
   $_key: 'size-' + $size;
-  $_value: map-get(s.$fonts, $_key);
+  $_value: map.get(s.$fonts, $_key);
   @if $_value == null {
     @error "Not found in target map.";
   }
@@ -59,7 +59,7 @@
  * @returns {string} $_value
  */
 @function colorRgba($color, $alpha: 1) {
-  $_value: map-get(s.$colors, $color);
+  $_value: map.get(s.$colors, $color);
   @if $_value == null {
     @error "Not found in target map.";
   }
