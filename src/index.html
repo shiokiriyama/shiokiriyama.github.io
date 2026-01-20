@@ -11,9 +11,8 @@
     <!-- ogp -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Shiokiriyama">
+    <meta property="og:site_name" content="Shiokiriyama">
     <meta property="og:url" content="https://shiokiriyama.github.io/">
-    <meta property="og:image" content="https://shiokiriyama.github.io/ogp.jpg">
-    <meta property="og:image:alt" content="シオキリヤマの絶景">
     <!-- icon / pwa -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="manifest" href="manifest.json">
@@ -25,9 +24,10 @@
     <!-- stylesheet -->
     <link rel="stylesheet" href="css/style.min.css">
     <!-- javascript -->
+    <script src="js/gtag.js"></script>
     <script src="js/main.js" type="module" defer></script>
     <!-- Google Tag Manager -->
-    <script>
+    <!-- <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -38,7 +38,7 @@
         j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
       })(window, document, 'script', 'dataLayer', 'GTM-M5MBN9D9');
-    </script>
+    </script> -->
     <!-- End Google Tag Manager -->
 
   </head>
@@ -55,26 +55,25 @@
       <!-- main -->
       <main class="main">
         <section>
-          <p>Run</p>
+          <p>Test</p>
           <ul>
-            <li>calc</li>
-            <li>cmd</li>
-            <li>control</li>
-            <li>msinfo32</li>
-            <li>regedit</li>
-            <li>sysdm.cpl</li>
-            <li>taskmgr</li>
+            <li>a</li>
+            <li>b</li>
+            <li>c</li>
           </ul>
         </section>
         <section>
-          <p>Command</p>
-          <ul>
-            <li>certutil [-hashfile] (file_path) [hash_algorithm]</li>
-            <li>chcp [437][932]</li>
-            <li>ipconfig [/all]</li>
-            <li>ipconfig [/flushdns]</li>
-            <li>ping (target_name)</li>
-          </ul>
+          <p>Network Tearm</p>
+          <dl>
+            <dt>サブネットマスク(Subnet Mask)</dt>
+            <dd>IPアドレスを分割してネットワークアドレス部分と端末を表すホストアドレス部分を識別するために使う数値(ex.255.255.255.0(/24))</dd>
+            <dt>デフォルトゲートウェイ(Default Gateway)</dt>
+            <dd>***</dd>
+            <dt>DNS(Domain Name System)</dt>
+            <dd>IPアドレスを文字列で扱うことを可能とする機構</dd>
+            <dt>DHCP(Dynamic Host Configuration Protocol)</dt>
+            <dd>コンピュータがネットワークに接続する際に必要な設定情報を自動的に割り当てるプロトコル</dd>
+          </dl>
         </section>
       </main>
       <!-- /main -->
