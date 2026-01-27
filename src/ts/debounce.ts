@@ -1,7 +1,13 @@
 const DEFAULT_DELAY = 200;
 
-type DebouncedFunction<T extends (...args: any[]) => any> = {
-  (...args: Parameters<T>): void;
+// Generic functional type
+type anyFn = (...args: any[]) => unknown;
+
+/**
+ * debouncedFunction
+ */
+type debouncedFunction<T extends anyFn> = {
+  (this: ThisParameterType<T>, ...args: Parameters<T>): void;
   cancel: () => void;
 };
 
@@ -11,24 +17,22 @@ type DebouncedFunction<T extends (...args: any[]) => any> = {
  * @param delay Delay time (ms)
  * @returns Debounced function
  */
-export function debounce<T extends (...args: any[]) => any>(
-  fn: T,
-  delay: number = DEFAULT_DELAY
-): DebouncedFunction<T> {
-  let timer: ReturnType<typeof setTimeout> | null = null;
+export function debounce<T extends anyFn>(fn: T, delay: number = DEFAULT_DELAY): debouncedFunction<T> {
+  let timer: number | null = null;
 
   const debounced = function (this: ThisParameterType<T>, ...args: Parameters<T>) {
-    if (timer) {
-      clearTimeout(timer);
+    if (timer !== null) {
+      window.clearTimeout(timer);
     }
-    timer = setTimeout(() => {
+    timer = window.setTimeout(() => {
       fn.apply(this, args);
+      timer = null;
     }, delay);
-  } as DebouncedFunction<T>;
+  } as debouncedFunction<T>;
 
   debounced.cancel = () => {
-    if (timer) {
-      clearTimeout(timer);
+    if (timer !== null) {
+      window.clearTimeout(timer);
       timer = null;
     }
   };

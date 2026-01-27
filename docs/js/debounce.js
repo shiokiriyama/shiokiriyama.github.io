@@ -8,16 +8,17 @@ const DEFAULT_DELAY = 200;
 export function debounce(fn, delay = DEFAULT_DELAY) {
     let timer = null;
     const debounced = function (...args) {
-        if (timer) {
-            clearTimeout(timer);
+        if (timer !== null) {
+            window.clearTimeout(timer);
         }
-        timer = setTimeout(() => {
+        timer = window.setTimeout(() => {
             fn.apply(this, args);
+            timer = null;
         }, delay);
     };
     debounced.cancel = () => {
-        if (timer) {
-            clearTimeout(timer);
+        if (timer !== null) {
+            window.clearTimeout(timer);
             timer = null;
         }
     };

@@ -1,9 +1,9 @@
 /*!
  * createdAt: 2025-04-17T14:11:47+09:00
- * updatedAt: 2026-01-05T13:52:08+09:00
+ * updatedAt: 2026-01-27T14:54:36+09:00
  */
 
-import { debounce } from './debounce.js';
+import { debounce } from './debounce';
 // import { debugCheck } from './debug_check.js';
 // import { debugConsole } from './debug_console.js';
 
@@ -32,21 +32,19 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Debounced resize handler
    */
-  const handleResize = debounce(() => {
-    // Actions to perform on window resize
+  const handleResize = debounce((): void => {
     console.log('Resize handler');
   }, 250);
 
   // Initial call
   handleResize();
 
-  // Attach 'resize' listener
   window.addEventListener('resize', handleResize);
+
   /*
-  // Optional: remove listener example after 10 seconds
-  setTimeout(() => {
-    window.removeEventListener('resize', handleResize);
-    console.log('Resize listener removed');
-  }, 10000);
-  */
+  例: 明示的に最後の呼び出しを実行したい場合;
+  handleResize.flush();
+  例: タイマーをキャンセルしたい場合;
+  handleResize.cancel();
+ */
 });
