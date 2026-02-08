@@ -14,11 +14,11 @@ Shiokiriyama is a personal website to showcase my projects, posts, and profile. 
 
 ## License
 
-Code HTML/CSStory is licensed under the **MIT License**.  
-See the [LICENSE](./LICENSE)
+The Code in this repository (HTML/CSS and other source files) is licensed under the **MIT License**.  
+See the [LICENSE](./LICENSE) file for details.
 
-including images, posts, and portfolio pieces — are licensed under  
+All content in this repository - including images, posts, and portfolio pieces — is licensed under  
 **Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)**.  
-See content-license.md for details.
+See [content-license.md](./content-license.md) for more details.
 
 @ Shiokiriyama
