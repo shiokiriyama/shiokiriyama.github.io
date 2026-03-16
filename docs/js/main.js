@@ -3,8 +3,10 @@
  * updatedAt: 2026-01-27T14:54:36+09:00
  */
 import { debounce } from './debounce';
-// import { debugCheck } from './debug_check.js';
-// import { debugConsole } from './debug_console.js';
+/**
+ *  import { debugCheck } from './debug_check';
+ *  import { debugConsole } from './debug_console';
+ */
 /**
  * Event Types
  *

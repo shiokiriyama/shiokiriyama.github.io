@@ -10,14 +10,14 @@ export const debugCheck = {
   isArray: (val: unknown): val is unknown[] => Array.isArray(val),
 
   /**
-   * 値が真偽値（boolean）かどうかを判定します。
+   * 値が真偽値(`boolean`)かどうかを判定します。
    * @param val 判定する値
    * @returns `val is boolean`
    */
   isBoolean: (val: unknown): val is boolean => typeof val === 'boolean',
 
   /**
-   * 値が関数かどうかを判定します。
+   * 値が関数(`function`)かどうかを判定します。
    * @param val 判定する値
    * @returns `val is (...args: unknown[]) => unknown`
    */
@@ -31,7 +31,7 @@ export const debugCheck = {
   isNull: (val: unknown): val is null => val === null,
 
   /**
-   * 値が「有限な数値」かどうかを判定します。
+   * 値が有限な数値かどうかを判定します。
    * `NaN` や `Infinity` を除外します。
    * @param val 判定する値
    * @returns `val is number`
@@ -53,14 +53,14 @@ export const debugCheck = {
   isUndefined: (val: unknown): val is undefined => typeof val === 'undefined',
 
   /**
-   * 値がシンボルかどうかを判定します。
+   * 値が `symbol` かどうかを判定します。
    * @param val 判定する値
    * @returns `val is symbol`
    */
   isSymbol: (val: unknown): val is symbol => typeof val === 'symbol',
 
   /**
-   * 値が「オブジェクト（配列と null を除く）」かどうかを判定します。
+   * 値が `object` かどうかを判定します(配列と `null` を除く)。
    * ※ Plain Object に限定しない一般的なオブジェクト判定です。
    * @param val 判定する値
    * @returns `val is object`

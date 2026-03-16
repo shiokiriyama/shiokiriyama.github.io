@@ -1,0 +1,69 @@
+# JavaScriptの構造
+
+## 1. 初期化レイヤ
+
+- initCanvas() Canvas と context の取得、サイズ設定、初期状態の確定
+- initState() アニメーションで扱う状態（座標・速度・フラグ等）の初期化
+- initAssets() 画像・フォントなど外部リソースの準備・読込管理
+
+---
+
+## 2. メインループ制御（中枢）
+
+- startAnimation() アニメーション開始のエントリーポイント
+- stopAnimation() アニメーション停止・破棄処理
+- loop / animate() requestAnimationFrame に渡すメインループ関数。更新 → 描画の順序を保証する
+
+---
+
+## 3. 更新（状態遷移）系
+
+- update() 1フレーム分の状態更新を統括する
+- updatePosition() 座標・移動量・補間処理を更新する
+- updateVelocity() 速度・加速度・減衰など運動要素を更新
+- updateState() フラグ・モード・フェーズ遷移など論理状態を更新
+
+---
+
+## 4. 描画レイヤ（責務分離が重要）
+
+- render() 1フレーム分の描画処理を統括する
+- clear() Canvas のクリア（前フレームの破棄）
+- drawBackground() 背景要素の描画
+- drawEntity() キャラクター・オブジェクトなど主体の描画
+- drawForeground() 前景・UI・エフェクトなどの描画
+
+---
+
+## 5. 座標・変換補助
+
+- applyTransform() translate / rotate / scale をまとめて適用する
+- resetTransformState() 描画状態を既定値に戻す
+- worldToScreen() 論理座標 → 描画座標への変換
+
+---
+
+## 6. 時間・補間管理
+
+updateTime() 経過時間・デルタタイムの算出
+lerp() 線形補間（位置・透明度などで多用）
+ease() イージング関数群のラッパー
+
+---
+
+## 7. イベント・入力系（簡単でも用意すべき）
+
+bindEvents() マウス・タッチ・キー入力の登録
+handleInput() 入力を状態変更に変換する
+
+## 8. デバッグ・制御補助（後で必ず効く）
+
+togglePause() 一時停止の切り替え
+debugDraw() 当たり判定・座標・補助線の描画
+reset() 状態を初期値へ戻す
+
+---
+
+## 構造的まとめ（重要）
+
+Canvas アニメーションで本当に自作すべきなのは描画関数ではなく、「更新（状態遷移）」と「描画」を分離するための関数群

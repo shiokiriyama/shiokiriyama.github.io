@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Canvas Animation Minimal Skeleton</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #111;
+        height: 100%;
+      }
+
+      canvas {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        background: #111;
+      }
+
+      /* デバッグ時に分かりやすいように、フォーカス枠は非表示 */
+      :focus {
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="app"></canvas>
+
+    <script>
+      'use strict';
+
+      // ----------------------------------------------------------
+      // 0. グローバル（モジュール）スコープ
+      // ----------------------------------------------------------
+      const App = {
+        canvas: null,
+        ctx: null,
+        dpr: Math.max(1, window.devicePixelRatio || 1),
+        w: 0, h: 0,
+        rafId: 0,
+        running: false,
+        paused: false,
+        debug: false,
+
+        time: {
+          start: 0,
+          last: 0,
+          now: 0,
+          delta: 0,        // 秒単位
+          elapsed: 0       // 秒単位
+        },
+
+        // 入力状態
+        input: {
+          keys: new Set()
+        },
+
+        // アセット置き場
+        assets: {
+          bgPattern: null,   // 背景パターン（生成）
+          sprite: null,      // デモ用スプライト（生成）
+          ready: false
+        },
+
+        // 論理・物理状態
+        state: {
+          entity: {
+            pos: { x: 0, y: 0 },
+            vel: { x: 0, y: 0 },
+            acc: { x: 0, y: 0 },
+            angle: 0,
+            size: 32
+          },
+          camera: {
+            offset: { x: 0, y: 0 },
+            scale: 1
+          },
+          flags: {
+            phase: 'idle'
+          },
+          initial: null // reset用に保持
+        }
+      };
+
+      // ----------------------------------------------------------
+      // 1. 初期化レイヤ
+      // initCanvas() Canvas と context の取得、サイズ設定、初期状態の確定
+      // initState() アニメーションで扱う状態（座標・速度・フラグ等）の初期化
+      // initAssets() 画像・フォントなど外部リソースの準備・読込管理
+      // ----------------------------------------------------------
+
+      function initCanvas() {
+        const canvas = document.getElementById('app');
+        const ctx = canvas.getContext('2d');
+
+        App.canvas = canvas;
+        App.ctx = ctx;
+
+        // リサイズ対応（DPR考慮）
+        const resize = () => {
+          const { innerWidth, innerHeight } = window;
+          App.w = Math.max(1, innerWidth);
+          App.h = Math.max(1, innerHeight);
+          const dpr = App.dpr;
+
+          canvas.width = Math.floor(App.w * dpr);
+          canvas.height = Math.floor(App.h * dpr);
+          ctx.setTransform(1, 0, 0, 1, 0, 0); // 既定状態
+          ctx.scale(dpr, dpr);                // 論理pxで描画できるようにスケール
+        };
+        window.addEventListener('resize', resize);
+        resize();
+      }
+
+      function initState() {
+        const cx = App.w * 0.5;
+        const cy = App.h * 0.5;
+
+        App.state.entity.pos.x = cx;
+        App.state.entity.pos.y = cy;
+        App.state.entity.vel.x = 0;
+        App.state.entity.vel.y = 0;
+        App.state.entity.acc.x = 0;
+        App.state.entity.acc.y = 0;
+        App.state.entity.angle = 0;
+        App.state.entity.size = 32;
+
+        App.state.camera.offset.x = 0;
+        App.state.camera.offset.y = 0;
+        App.state.camera.scale = 1;
+
+        App.state.flags.phase = 'idle';
+
+        // リセット用スナップショット
+        App.state.initial = JSON.parse(JSON.stringify(App.state));
+      }
+
+      function initAssets() {
+        // 外部ファイルを使わず、最小限のデモ用に動的生成
+        const { ctx } = App;
+
+        // 背景パターン
+        const patternCanvas = document.createElement('canvas');
+        patternCanvas.width = 64; patternCanvas.height = 64;
+        const pctx = patternCanvas.getContext('2d');
+        pctx.fillStyle = '#0f0f13';
+        pctx.fillRect(0, 0, 64, 64);
+        pctx.strokeStyle = '#1f1f2a';
+        pctx.lineWidth = 2;
+        pctx.beginPath();
+        pctx.moveTo(0, 64); pctx.lineTo(64, 0);
+        pctx.stroke();
+
+        App.assets.bgPattern = ctx.createPattern(patternCanvas, 'repeat');
+
+        // スプライト（円+十字）
+        const spriteCanvas = document.createElement('canvas');
+        const S = 64;
+        spriteCanvas.width = S;
+        spriteCanvas.height = S;
+        const sctx = spriteCanvas.getContext('2d');
+        sctx.translate(S / 2, S / 2);
+        // 本体
+        const grad = sctx.createRadialGradient(0, 0, 4, 0, 0, 28);
+        grad.addColorStop(0, '#7ef');
+        grad.addColorStop(1, '#048');
+        sctx.fillStyle = grad;
+        sctx.beginPath();
+        sctx.arc(0, 0, 24, 0, Math.PI * 2);
+        sctx.fill();
+        // 十字
+        sctx.strokeStyle = 'rgba(255,255,255,0.7)';
+        sctx.lineWidth = 2;
+        sctx.beginPath();
+        sctx.moveTo(-16, 0); sctx.lineTo(16, 0);
+        sctx.moveTo(0, -16); sctx.lineTo(0, 16);
+        sctx.stroke();
+
+        App.assets.sprite = spriteCanvas;
+
+        App.assets.ready = true;
+        return Promise.resolve();
+      }
+
+      // ----------------------------------------------------------
+      // 2. メインループ制御（中枢）
+      // startAnimation() アニメーション開始のエントリーポイント
+      // stopAnimation() アニメーション停止・破棄処理
+      // loop() / animate() requestAnimationFrame に渡すメインループ関数、更新 → 描画の順序を保証する
+      // ----------------------------------------------------------
+
+      function startAnimation() {
+        if (App.running) return;
+        initCanvas();
+        initState();
+        bindEvents();
+
+        initAssets().then(() => {
+          App.running = true;
+          App.paused = false;
+
+          const t0 = performance.now();
+          App.time.start = t0;
+          App.time.last = t0;
+          App.time.now = t0;
+          App.time.delta = 0;
+          App.time.elapsed = 0;
+
+          App.rafId = requestAnimationFrame(animate);
+        });
+      }
+
+      function stopAnimation() {
+        if (!App.running) return;
+        cancelAnimationFrame(App.rafId);
+        App.running = false;
+
+        // イベント解除（必要に応じて）
+        window.removeEventListener('keydown', onKeyDown);
+        window.removeEventListener('keyup', onKeyUp);
+      }
+
+      function animate(t) {
+        updateTime(t);
+
+        // 更新 → 描画 の順序を保証
+        if (!App.paused) update();
+        render();
+
+        App.rafId = requestAnimationFrame(animate);
+      }
+
+      // ----------------------------------------------------------
+      // 3. 更新（状態遷移）系
+      // update() 1フレーム分の状態更新を統括する
+      // updatePosition() 座標・移動量・補間処理を更新する
+      // updateVelocity() 速度・加速度・減衰など運動要素を更新
+      // updateState() フラグ・モード・フェーズ遷移など論理状態を更新
+      // ----------------------------------------------------------
+
+      function update() {
+        handleInput();
+        updateVelocity();
+        updatePosition();
+        updateState();
+      }
+
+      function updatePosition() {
+        const { entity } = App.state;
+        const dt = App.time.delta;
+
+        entity.pos.x += entity.vel.x * dt;
+        entity.pos.y += entity.vel.y * dt;
+
+        // 画面内でバウンス
+        const pad = entity.size;
+        const minX = pad, maxX = App.w - pad;
+        const minY = pad, maxY = App.h - pad;
+
+        if (entity.pos.x < minX) { entity.pos.x = minX; entity.vel.x *= -0.6; }
+        if (entity.pos.x > maxX) { entity.pos.x = maxX; entity.vel.x *= -0.6; }
+        if (entity.pos.y < minY) { entity.pos.y = minY; entity.vel.y *= -0.6; }
+        if (entity.pos.y > maxY) { entity.pos.y = maxY; entity.vel.y *= -0.6; }
+
+        // 回転（速度に応じて）
+        entity.angle += (entity.vel.x + entity.vel.y) * 0.0015;
+      }
+
+      function updateVelocity() {
+        const { entity } = App.state;
+        const dt = App.time.delta;
+
+        // 入力による加速度は handleInput で更新済み
+        entity.vel.x += entity.acc.x * dt;
+        entity.vel.y += entity.acc.y * dt;
+
+        // 減衰（空気抵抗）
+        const damping = 0.92;
+        entity.vel.x *= damping;
+        entity.vel.y *= damping;
+
+        // クリッピング（暴走防止）
+        const vmax = 800;
+        entity.vel.x = Math.max(-vmax, Math.min(vmax, entity.vel.x));
+        entity.vel.y = Math.max(-vmax, Math.min(vmax, entity.vel.y));
+      }
+
+      function updateState() {
+        const { flags, entity } = App.state;
+
+        // フェーズ遷移例（速度が小さければ idle、一定以上で moving）
+        const speed2 = entity.vel.x * entity.vel.x + entity.vel.y * entity.vel.y;
+        const moving = speed2 > 25 * 25;
+        flags.phase = moving ? 'moving' : 'idle';
+      }
+
+      // ----------------------------------------------------------
+      // 4. 描画レイヤ（責務分離）
+      // render() 1フレーム分の描画処理を統括する
+      // clear() Canvas のクリア（前フレームの破棄）
+      // drawBackground() 背景要素の描画
+      // drawEntity() キャラクター・オブジェクトなど主体の描画
+      // drawForeground() 前景・UI・エフェクトなどの描画
+      // ----------------------------------------------------------
+
+      function render() {
+        clear();
+        drawBackground();
+        drawEntity();
+        drawForeground();
+        if (App.debug) debugDraw();
+      }
+
+      function clear() {
+        const { ctx, w, h } = App;
+        ctx.clearRect(0, 0, w, h); // 前フレームの破棄
+      }
+
+      function drawBackground() {
+        const { ctx, w, h, assets } = App;
+        if (assets.bgPattern) {
+          ctx.fillStyle = assets.bgPattern;
+          ctx.fillRect(0, 0, w, h);
+        } else {
+          ctx.fillStyle = '#101018';
+          ctx.fillRect(0, 0, w, h);
+        }
+      }
+
+      function drawEntity() {
+        const { ctx, assets, state } = App;
+        const { entity } = state;
+
+        ctx.save();
+        applyTransform(ctx, {
+          x: entity.pos.x,
+          y: entity.pos.y,
+          rotation: entity.angle,
+          scaleX: 1,
+          scaleY: 1
+        });
+
+        if (assets.sprite) {
+          const s = entity.size;
+          ctx.drawImage(assets.sprite, -s, -s, s * 2, s * 2);
+        } else {
+          // フォールバック（円）
+          ctx.fillStyle = '#0bf';
+          ctx.beginPath();
+          ctx.arc(0, 0, entity.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.restore();
+      }
+
+      function drawForeground() {
+        const { ctx, state } = App;
+
+        // 簡易UI（フェーズ表示）
+        ctx.save();
+        resetTransformState(ctx);
+        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+        ctx.font = '14px system-ui, -apple-system, Segoe UI, Roboto, sans-serif';
+        ctx.fillText(`Phase: ${state.flags.phase}`, 12, 20);
+        ctx.fillText(`P: pause / R: reset / D: debug / arrows or WASD: move`, 12, 40);
+        ctx.restore();
+      }
+
+      // ----------------------------------------------------------
+      // 5. 座標・変換補助
+      // applyTransform() translate / rotate / scale をまとめて適用する
+      // resetTransformState() 描画状態を既定値に戻す
+      // worldToScreen() 論理座標 → 描画座標への変換
+      // ----------------------------------------------------------
+
+      function applyTransform(ctx, { x = 0, y = 0, rotation = 0, scaleX = 1, scaleY = 1 }) {
+        ctx.translate(x, y);
+        if (rotation) ctx.rotate(rotation);
+        if (scaleX !== 1 || scaleY !== 1) ctx.scale(scaleX, scaleY);
+      }
+
+      function resetTransformState(ctx) {
+        // 既定値に戻す
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        // DPRを再適用（論理px描画を維持）
+        ctx.scale(App.dpr, App.dpr);
+        ctx.globalAlpha = 1;
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.lineWidth = 1;
+      }
+
+      function worldToScreen(wx, wy) {
+        const { camera } = App.state;
+        const sx = (wx + camera.offset.x) * camera.scale;
+        const sy = (wy + camera.offset.y) * camera.scale;
+        return { x: sx, y: sy };
+      }
+
+      // ----------------------------------------------------------
+      // 6. 時間・補間管理
+      // updateTime() 経過時間・デルタタイムの算出
+      // lerp() 線形補間（位置・透明度などで多用）
+      // ease() イージング関数群のラッパー
+      // ----------------------------------------------------------
+
+      function updateTime(t) {
+        App.time.now = t;
+        const dtMs = t - App.time.last;
+        App.time.delta = Math.max(0, dtMs) / 1000;    // 秒
+        App.time.elapsed = (t - App.time.start) / 1000;
+        App.time.last = t;
+
+        // フレームスパイクの安全弁（タブ復帰など）
+        if (App.time.delta > 0.1) App.time.delta = 0.1;
+      }
+
+      function lerp(a, b, t) {
+        return a + (b - a) * t;
+      }
+
+      // シンプルなイージング・ラッパ
+      function ease(name, t) {
+        t = Math.max(0, Math.min(1, t));
+        switch (name) {
+          case 'inQuad': return t * t;
+          case 'outQuad': return t * (2 - t);
+          case 'inOutQuad':
+          default:
+            return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        }
+      }
+
+      // ----------------------------------------------------------
+      // 7. イベント・入力系（簡単でも用意すべき）
+      // bindEvents() マウス・タッチ・キー入力の登録
+      // handleInput() 入力を状態変更に変換する
+      // ----------------------------------------------------------
+
+      function bindEvents() {
+        window.addEventListener('keydown', onKeyDown);
+        window.addEventListener('keyup', onKeyUp);
+      }
+
+      function onKeyDown(e) {
+        // 制御キー
+        if (e.code === 'KeyP') { togglePause(); return; }
+        if (e.code === 'KeyR') { reset(); return; }
+        if (e.code === 'KeyD') { App.debug = !App.debug; return; }
+
+        App.input.keys.add(e.code);
+      }
+
+      function onKeyUp(e) {
+        App.input.keys.delete(e.code);
+      }
+
+      function handleInput() {
+        const { keys } = App.input;
+        const { entity } = App.state;
+
+        const accel = 1800; // px/s^2
+        entity.acc.x = 0;
+        entity.acc.y = 0;
+
+        if (keys.has('ArrowLeft') || keys.has('KeyA')) entity.acc.x -= accel;
+        if (keys.has('ArrowRight') || keys.has('KeyD')) entity.acc.x += accel;
+        if (keys.has('ArrowUp') || keys.has('KeyW')) entity.acc.y -= accel;
+        if (keys.has('ArrowDown') || keys.has('KeyS')) entity.acc.y += accel;
+      }
+
+      // ----------------------------------------------------------
+      // 8. デバッグ・制御補助
+      // togglePause() 一時停止の切り替え
+      // debugDraw() 当たり判定・座標・補助線の描画
+      // reset() 状態を初期値へ戻す
+      // ----------------------------------------------------------
+
+      function togglePause() {
+        App.paused = !App.paused;
+      }
+
+      function debugDraw() {
+        const { ctx, state } = App;
+        const { entity } = state;
+
+        ctx.save();
+        // 軸
+        ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, entity.pos.y); ctx.lineTo(App.w, entity.pos.y);
+        ctx.moveTo(entity.pos.x, 0); ctx.lineTo(entity.pos.x, App.h);
+        ctx.stroke();
+
+        // 当たり判定（円）
+        ctx.strokeStyle = 'rgba(0,255,255,0.7)';
+        ctx.beginPath();
+        ctx.arc(entity.pos.x, entity.pos.y, entity.size, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // 速度ベクトル
+        ctx.strokeStyle = 'rgba(255,200,0,0.9)';
+        ctx.beginPath();
+        ctx.moveTo(entity.pos.x, entity.pos.y);
+        ctx.lineTo(entity.pos.x + entity.vel.x * 0.15, entity.pos.y + entity.vel.y * 0.15);
+        ctx.stroke();
+
+        // 情報
+        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+        ctx.font = '12px system-ui, -apple-system, Segoe UI, Roboto, sans-serif';
+        ctx.fillText(`pos=(${entity.pos.x.toFixed(1)}, ${entity.pos.y.toFixed(1)})`, 12, App.h - 52);
+        ctx.fillText(`vel=(${entity.vel.x.toFixed(1)}, ${entity.vel.y.toFixed(1)})`, 12, App.h - 36);
+        ctx.fillText(`dt=${App.time.delta.toFixed(4)}s  elapsed=${App.time.elapsed.toFixed(2)}s`, 12, App.h - 20);
+
+        ctx.restore();
+      }
+
+      function reset() {
+        if (!App.state.initial) return;
+        // 深いコピーで初期値へ
+        const snap = JSON.parse(JSON.stringify(App.state.initial));
+        App.state.entity = snap.entity;
+        App.state.camera = snap.camera;
+        App.state.flags = snap.flags;
+      }
+
+      // エントリーポイント（自動開始）
+      window.addEventListener('DOMContentLoaded', () => {
+        startAnimation();
+      });
+
+      // 任意で外部から制御したい場合に備え、グローバル公開
+      window.AppAPI = {
+        start: startAnimation,
+        stop: stopAnimation,
+        togglePause,
+        reset
+      };
+    </script>
+  </body>
+</html>
