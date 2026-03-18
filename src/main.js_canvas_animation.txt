@@ -67,3 +67,52 @@ reset() 状態を初期値へ戻す
 ## 構造的まとめ（重要）
 
 Canvas アニメーションで本当に自作すべきなのは描画関数ではなく、「更新（状態遷移）」と「描画」を分離するための関数群
+
+```mermaid
+flowchart TD
+    %% ============ エントリ / 初期化 ============
+    A[開始] --> B["initCanvas()"]
+    B --> C["initState()"]
+    C --> D["initAssets()"]
+    D --> E["bindEvents()"]
+    E --> F["startAnimation()"]
+
+    %% ============ ループ制御 ============
+    subgraph L[メインループ / requestAnimationFrame]
+        direction TB
+        F --> G["loop/animate()"]
+        G --> H["updateTime()"]
+        H --> I["handleInput()"]
+        I --> J["update()"]
+        J --> J1["updatePosition()"]
+        J1 --> J2["updateVelocity()"]
+        J2 --> J3["updateState()"]
+        J3 --> K["render()"]
+        K --> K0["clear()"]
+        K0 --> K1["drawBackground()"]
+        K1 --> K2["drawEntity()"]
+        K2 --> K3["drawForeground()"]
+
+        %% 変換補助は描画系から利用
+        K2 -.-> T1["applyTransform()"]
+        K3 -.-> T2["resetTransformState()"]
+        K2 -.-> T3["worldToScreen()"]
+
+        %% デバッグ描画（任意）
+        J3 -->|debug有効| D1["debugDraw()"]
+        D1 --> K
+
+        %% ポーズ切替
+        I -->|"togglePause()"| P{pause}
+        P -->|True| W["待機(描画/更新停止)"]
+        W -->|再開| G
+        P -->|False| J
+
+        %% 継続 or 終了
+        K --> Q{isRunning}
+        Q -->|True| G
+        Q -->|False| R["stopAnimation()"]
+    end
+
+    R --> S[終了]
+```
