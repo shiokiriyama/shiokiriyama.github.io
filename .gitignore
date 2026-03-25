@@ -1,16 +1,40 @@
 # Visual Studio Code
 .vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
 
 # Dependency directories
 node_modules/
 
-# Python Environments
+# Python
+__pycache__/
 *.py[codz]
+
+# Python virtual environments
+venv/
+.venv/
+
+# Environment variables
 .env
-pycache
+
+# Build artifacts
+dist/
+build/
+coverage/
 
 # Sass Map File
 *.css.map
 
-# Global macOS
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
 .DS_Store
