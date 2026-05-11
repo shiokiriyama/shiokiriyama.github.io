@@ -29,10 +29,11 @@
     "build:jsmin": "terser docs/js/main.js -c -m -o docs/js/main.min.js",
     "build:sass": "sass src/scss/styles.scss docs/css/styles.min.css --style=compressed",
     "build:ts": "tsc",
+    "build": "run-s build:html build:sass build:ts build:jsmin",
     "dev": "run-p serve watch:*",
     "serve": "live-server docs --host=127.0.0.1 --port=5173 --watch=docs --no-browser",
     "watch:html": "node bin/htmlminify.js --watch",
-    "watch:sass": "sass src/scss/styles.scss docs/css/styles.min.css --style=compressed --watch",
+    "watch:sass": "sass src/scss/styles.scss docs/css/styles.min.css --style=expanded --watch",
     "watch:ts": "tsc --watch"
   },
   "type": "module"
