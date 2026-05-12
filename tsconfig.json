@@ -11,6 +11,7 @@
     "skipLibCheck": true
   },
   "files": [
-    "src/ts/main.ts"
+    "src/ts/main.ts",
+    "src/ts/gtag.ts"
   ]
 }

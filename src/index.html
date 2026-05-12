@@ -24,26 +24,15 @@
     <!-- stylesheet -->
     <link rel="stylesheet" href="css/styles.min.css">
     <!-- javascript -->
-    <!-- <script src="js/gtag.js"></script> -->
+    <script src="js/gtag.js"></script>
     <script src="js/main.js" type="module" defer></script>
-    <!-- Google Tag Manager -->
-    <!-- <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-M5MBN9D9');
-    </script> -->
-    <!-- End Google Tag Manager -->
-
   </head>
 
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5MBN9D9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <div class="root">
       <!-- header -->
       <header class="header">
@@ -54,9 +43,9 @@
       <!-- /header -->
       <!-- main -->
       <main class="main">
-        <div id="wrap" style="display: grid; place-items: center;">
+        <section id="wrap" style="display: grid; place-items: center;">
           <canvas id="canvas" style="width: 640px; height: 360px; border: 1px solid #223;"></canvas>
-        </div>
+        </section>
         <section>
           <p>Test</p>
           <ul>
@@ -65,26 +54,156 @@
             <li>c</li>
           </ul>
         </section>
-        <section>
-          <ul>
-            <li style="background: #ffebee; width: 64px; height: 36px; font-size: 0.6875rem;">Red 50</li>
-            <li style="background: #ffcdd2; width: 64px; height: 36px; font-size: 0.6875rem;">Red 100</li>
-            <li style="background: #ef9a9a; width: 64px; height: 36px; font-size: 0.6875rem;">Red 200</li>
-            <li style="background: #e57373; width: 64px; height: 36px; font-size: 0.6875rem;">Red 300</li>
-            <li style="background: #ef5350; width: 64px; height: 36px; font-size: 0.6875rem;">Red 400</li>
-            <li style="background: #f44336; width: 64px; height: 36px; font-size: 0.6875rem;">Red 500</li>
-            <li style="background: #e53935; width: 64px; height: 36px; font-size: 0.6875rem;">Red 600</li>
-            <li style="background: #d32f2f; width: 64px; height: 36px; font-size: 0.6875rem;">Red 700</li>
-            <li style="background: #c62828; width: 64px; height: 36px; font-size: 0.6875rem;">Red 800</li>
-            <li style="background: #b71c1c; width: 64px; height: 36px; font-size: 0.6875rem;">Red 900</li>
-            <li style="background: #ff8a80; width: 64px; height: 36px; font-size: 0.6875rem;">Red a100</li>
-            <li style="background: #ff5252; width: 64px; height: 36px; font-size: 0.6875rem;">Red a200</li>
-            <li style="background: #ff1744; width: 64px; height: 36px; font-size: 0.6875rem;">Red a400</li>
-            <li style="background: #d50000; width: 64px; height: 36px; font-size: 0.6875rem;">Red a700</li>
+        <section style="display: flex;">
+          <ul style="list-style: none none inside; padding: 0; width: calc(100% / 16); font-size: 0.6875rem;">
+            <li style="background: var(--color-red-50); height: 48px;">Red 50</li>
+            <li style="background: var(--color-red-100); height: 48px;">Red 100</li>
+            <li style="background: var(--color-red-200); height: 48px;">Red 200</li>
+            <li style="background: var(--color-red-300); height: 48px;">Red 300</li>
+            <li style="background: var(--color-red-400); height: 48px;">Red 400</li>
+            <li style="background: var(--color-red-500); height: 48px;">Red 500</li>
+            <li style="background: var(--color-red-600); height: 48px;">Red 600</li>
+            <li style="background: var(--color-red-700); height: 48px;">Red 700</li>
+            <li style="background: var(--color-red-800); height: 48px;">Red 800</li>
+            <li style="background: var(--color-red-900); height: 48px;">Red 900</li>
+            <li style="background: var(--color-red-a100); height: 48px;">Red A100</li>
+            <li style="background: var(--color-red-a200); height: 48px;">Red A200</li>
+            <li style="background: var(--color-red-a400); height: 48px;">Red A400</li>
+            <li style="background: var(--color-red-a700); height: 48px;">Red A700</li>
+          </ul>
+          <ul style="list-style: none none inside; padding: 0; width: calc(100% / 16); font-size: 0.6875rem;">
+            <li style="background: var(--color-pink-50); height: 48px;">Pink 50</li>
+            <li style="background: var(--color-pink-100); height: 48px;">Pink 100</li>
+            <li style="background: var(--color-pink-200); height: 48px;">Pink 200</li>
+            <li style="background: var(--color-pink-300); height: 48px;">Pink 300</li>
+            <li style="background: var(--color-pink-400); height: 48px;">Pink 400</li>
+            <li style="background: var(--color-pink-500); height: 48px;">Pink 500</li>
+            <li style="background: var(--color-pink-600); height: 48px;">Pink 600</li>
+            <li style="background: var(--color-pink-700); height: 48px;">Pink 700</li>
+            <li style="background: var(--color-pink-800); height: 48px;">Pink 800</li>
+            <li style="background: var(--color-pink-900); height: 48px;">Pink 900</li>
+            <li style="background: var(--color-pink-a100); height: 48px;">Pink A100</li>
+            <li style="background: var(--color-pink-a200); height: 48px;">Pink A200</li>
+            <li style="background: var(--color-pink-a400); height: 48px;">Pink A400</li>
+            <li style="background: var(--color-pink-a700); height: 48px;">Pink A700</li>
+          </ul>
+          <ul style="list-style: none none inside; padding: 0; width: calc(100% / 16); font-size: 0.6875rem;">
+            <li style="background: var(--color-purple-50); height: 48px;">Purple 50</li>
+            <li style="background: var(--color-purple-100); height: 48px;">Purple 100</li>
+            <li style="background: var(--color-purple-200); height: 48px;">Purple 200</li>
+            <li style="background: var(--color-purple-300); height: 48px;">Purple 300</li>
+            <li style="background: var(--color-purple-400); height: 48px;">Purple 400</li>
+            <li style="background: var(--color-purple-500); height: 48px;">Purple 500</li>
+            <li style="background: var(--color-purple-600); height: 48px;">Purple 600</li>
+            <li style="background: var(--color-purple-700); height: 48px;">Purple 700</li>
+            <li style="background: var(--color-purple-800); height: 48px;">Purple 800</li>
+            <li style="background: var(--color-purple-900); height: 48px;">Purple 900</li>
+            <li style="background: var(--color-purple-a100); height: 48px;">Purple A100</li>
+            <li style="background: var(--color-purple-a200); height: 48px;">Purple A200</li>
+            <li style="background: var(--color-purple-a400); height: 48px;">Purple A400</li>
+            <li style="background: var(--color-purple-a700); height: 48px;">Purple A700</li>
+          </ul>
+          <ul style="list-style: none none inside; padding: 0; width: calc(100% / 16); font-size: 0.6875rem;">
+            <li style="background: var(--color-deep-purple-50); height: 48px;">Deep Purple 50</li>
+            <li style="background: var(--color-deep-purple-100); height: 48px;">Deep Purple 100</li>
+            <li style="background: var(--color-deep-purple-200); height: 48px;">Deep Purple 200</li>
+            <li style="background: var(--color-deep-purple-300); height: 48px;">Deep Purple 300</li>
+            <li style="background: var(--color-deep-purple-400); height: 48px;">Deep Purple 400</li>
+            <li style="background: var(--color-deep-purple-500); height: 48px;">Deep Purple 500</li>
+            <li style="background: var(--color-deep-purple-600); height: 48px;">Deep Purple 600</li>
+            <li style="background: var(--color-deep-purple-700); height: 48px;">Deep Purple 700</li>
+            <li style="background: var(--color-deep-purple-800); height: 48px;">Deep Purple 800</li>
+            <li style="background: var(--color-deep-purple-900); height: 48px;">Deep Purple 900</li>
+            <li style="background: var(--color-deep-purple-a100); height: 48px;">Deep Purple A100</li>
+            <li style="background: var(--color-deep-purple-a200); height: 48px;">Deep Purple A200</li>
+            <li style="background: var(--color-deep-purple-a400); height: 48px;">Deep Purple A400</li>
+            <li style="background: var(--color-deep-purple-a700); height: 48px;">Deep Purple A700</li>
+          </ul>
+          <ul style="list-style: none none inside; padding: 0; width: calc(100% / 16); font-size: 0.6875rem;">
+            <li style="background: var(--color-indigo-50); height: 48px;">Indigo 50</li>
+            <li style="background: var(--color-indigo-100); height: 48px;">Indigo 100</li>
+            <li style="background: var(--color-indigo-200); height: 48px;">Indigo 200</li>
+            <li style="background: var(--color-indigo-300); height: 48px;">Indigo 300</li>
+            <li style="background: var(--color-indigo-400); height: 48px;">Indigo 400</li>
+            <li style="background: var(--color-indigo-500); height: 48px;">Indigo 500</li>
+            <li style="background: var(--color-indigo-600); height: 48px;">Indigo 600</li>
+            <li style="background: var(--color-indigo-700); height: 48px;">Indigo 700</li>
+            <li style="background: var(--color-indigo-800); height: 48px;">Indigo 800</li>
+            <li style="background: var(--color-indigo-900); height: 48px;">Indigo 900</li>
+            <li style="background: var(--color-indigo-a100); height: 48px;">Indigo A100</li>
+            <li style="background: var(--color-indigo-a200); height: 48px;">Indigo A200</li>
+            <li style="background: var(--color-indigo-a400); height: 48px;">Indigo A400</li>
+            <li style="background: var(--color-indigo-a700); height: 48px;">Indigo A700</li>
+          </ul>
+          </ul>
+          <ul style="list-style: none none inside; padding: 0; width: calc(100% / 16); font-size: 0.6875rem;">
+            <li style="background: var(--color-blue-50); height: 48px;">Blue 50</li>
+            <li style="background: var(--color-blue-100); height: 48px;">Blue 100</li>
+            <li style="background: var(--color-blue-200); height: 48px;">Blue 200</li>
+            <li style="background: var(--color-blue-300); height: 48px;">Blue 300</li>
+            <li style="background: var(--color-blue-400); height: 48px;">Blue 400</li>
+            <li style="background: var(--color-blue-500); height: 48px;">Blue 500</li>
+            <li style="background: var(--color-blue-600); height: 48px;">Blue 600</li>
+            <li style="background: var(--color-blue-700); height: 48px;">Blue 700</li>
+            <li style="background: var(--color-blue-800); height: 48px;">Blue 800</li>
+            <li style="background: var(--color-blue-900); height: 48px;">Blue 900</li>
+            <li style="background: var(--color-blue-a100); height: 48px;">Blue A100</li>
+            <li style="background: var(--color-blue-a200); height: 48px;">Blue A200</li>
+            <li style="background: var(--color-blue-a400); height: 48px;">Blue A400</li>
+            <li style="background: var(--color-blue-a700); height: 48px;">Blue A700</li>
+          </ul>
+          <ul style="list-style: none none inside; padding: 0; width: calc(100% / 16); font-size: 0.6875rem;">
+            <li style="background: var(--color-light-blue-50); height: 48px;">Light Blue 50</li>
+            <li style="background: var(--color-light-blue-100); height: 48px;">Light Blue 100</li>
+            <li style="background: var(--color-light-blue-200); height: 48px;">Light Blue 200</li>
+            <li style="background: var(--color-light-blue-300); height: 48px;">Light Blue 300</li>
+            <li style="background: var(--color-light-blue-400); height: 48px;">Light Blue 400</li>
+            <li style="background: var(--color-light-blue-500); height: 48px;">Light Blue 500</li>
+            <li style="background: var(--color-light-blue-600); height: 48px;">Light Blue 600</li>
+            <li style="background: var(--color-light-blue-700); height: 48px;">Light Blue 700</li>
+            <li style="background: var(--color-light-blue-800); height: 48px;">Light Blue 800</li>
+            <li style="background: var(--color-light-blue-900); height: 48px;">Light Blue 900</li>
+            <li style="background: var(--color-light-blue-a100); height: 48px;">Light Blue A100</li>
+            <li style="background: var(--color-light-blue-a200); height: 48px;">Light Blue A200</li>
+            <li style="background: var(--color-light-blue-a400); height: 48px;">Light Blue A400</li>
+            <li style="background: var(--color-light-blue-a700); height: 48px;">Light Blue A700</li>
+          </ul>
+          <ul style="list-style: none none inside; padding: 0; width: calc(100% / 16); font-size: 0.6875rem;">
+            <li style="background: var(--color-cyan-50); height: 48px;">Cyan 50</li>
+            <li style="background: var(--color-cyan-100); height: 48px;">Cyan 100</li>
+            <li style="background: var(--color-cyan-200); height: 48px;">Cyan 200</li>
+            <li style="background: var(--color-cyan-300); height: 48px;">Cyan 300</li>
+            <li style="background: var(--color-cyan-400); height: 48px;">Cyan 400</li>
+            <li style="background: var(--color-cyan-500); height: 48px;">Cyan 500</li>
+            <li style="background: var(--color-cyan-600); height: 48px;">Cyan 600</li>
+            <li style="background: var(--color-cyan-700); height: 48px;">Cyan 700</li>
+            <li style="background: var(--color-cyan-800); height: 48px;">Cyan 800</li>
+            <li style="background: var(--color-cyan-900); height: 48px;">Cyan 900</li>
+            <li style="background: var(--color-cyan-a100); height: 48px;">Cyan A100</li>
+            <li style="background: var(--color-cyan-a200); height: 48px;">Cyan A200</li>
+            <li style="background: var(--color-cyan-a400); height: 48px;">Cyan A400</li>
+            <li style="background: var(--color-cyan-a700); height: 48px;">Cyan A700</li>
+          </ul>
+          <ul style="list-style: none none inside; padding: 0; width: calc(100% / 16); font-size: 0.6875rem;">
+            <li style="background: var(--color-teal-50); height: 48px;">Teal 50</li>
+            <li style="background: var(--color-teal-100); height: 48px;">Teal 100</li>
+            <li style="background: var(--color-teal-200); height: 48px;">Teal 200</li>
+            <li style="background: var(--color-teal-300); height: 48px;">Teal 300</li>
+            <li style="background: var(--color-teal-400); height: 48px;">Teal 400</li>
+            <li style="background: var(--color-teal-500); height: 48px;">Teal 500</li>
+            <li style="background: var(--color-teal-600); height: 48px;">Teal 600</li>
+            <li style="background: var(--color-teal-700); height: 48px;">Teal 700</li>
+            <li style="background: var(--color-teal-800); height: 48px;">Teal 800</li>
+            <li style="background: var(--color-teal-900); height: 48px;">Teal 900</li>
+            <li style="background: var(--color-teal-a100); height: 48px;">Teal A100</li>
+            <li style="background: var(--color-teal-a200); height: 48px;">Teal A200</li>
+            <li style="background: var(--color-teal-a400); height: 48px;">Teal A400</li>
+            <li style="background: var(--color-teal-a700); height: 48px;">Teal A700</li>
           </ul>
         </section>
+        <p>Material Design Color values by Google, licensed under CC BY 4.0</p>
         <section>
-          <table style="border-spacing: 0; font-size: 11px;">
+          <table style="border-spacing: 0; font-size: 0.6875rem;">
             <tr>
               <th>Decimal</th>
               <th>Hexadecimal</th>
