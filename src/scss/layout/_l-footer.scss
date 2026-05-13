@@ -69,13 +69,18 @@
       display: none;
     }
   }
+   */
 
   .footer-credit {
     margin: s.spacing(0);
     text-align: center;
+    &__author {
+      display: block;
+      font-size: s.fontSize(12);
+    }
     &__copyright {
+      display: block;
       font-size: s.fontSize(12);
     }
   }
- */
 }

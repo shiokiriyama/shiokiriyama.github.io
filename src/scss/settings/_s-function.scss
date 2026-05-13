@@ -1,5 +1,6 @@
 @use 's-variable.scss' as s;
 @use 'sass:map';
+@use 'sass:math';
 
 /**
  * Block Width Value
@@ -40,7 +41,7 @@
  * @returns {string} $_value
  */
 @function fontSize($size: 16) {
-  @if not unitless($size) {
+  @if not math.is-unitless($size) {
     @error "This function expects a unitless number (e.g. 16)";
   }
   $_key: 'size-' + $size;
