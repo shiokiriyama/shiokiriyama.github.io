@@ -32,14 +32,7 @@
   */
 
   /* ---- Font ---- */
-  /*
-  @each $name, $size in s.$fonts {
-    $_short: str-slice($name, 6);
-    .u-font-size__#{$_short} {
-      font-size: $size;
-    }
-  }
-  */
+
 
   /* ---- Text ---- */
   /*
@@ -83,7 +76,7 @@
   }
   */
 
-  /* ---- Color ---- */
+  /* ---- Kerning ---- */
   /*
 .u-kerning {
   &__p5 {
@@ -116,6 +109,10 @@
  */
 
   /* ---- States ---- */
+  .u-hidden {
+    visibility: hidden;
+  }
+
   /*
   .is-show {
     display: block;

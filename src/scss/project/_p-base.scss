@@ -1,6 +1,19 @@
 @use '../settings' as s;
 
 @layer project {
+  .p-material-color {
+    display: flex;
+    &__list {
+      list-style: none none inside;
+      margin: 0;
+      padding: 0;
+      max-width: calc(100% / 19);
+    }
+    &__list-item {
+      height: 48px;
+      font-size: 0.6875rem;
+    }
+  }
   /*
   .p-skill {
     background: s.colorRgba(black, 1);
