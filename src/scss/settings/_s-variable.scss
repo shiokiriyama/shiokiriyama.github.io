@@ -285,6 +285,7 @@ $colors: (
   blue-gray-900: #263238,
 ) !default;
 
+/* CSS Variable */
 :root {
   @each $name, $value in $colors {
     --color-#{meta.inspect($name)}: #{$value};

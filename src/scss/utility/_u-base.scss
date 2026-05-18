@@ -109,7 +109,11 @@
  */
 
   /* ---- States ---- */
-  .u-hidden {
+  .u-visible {
+    visibility: visible;
+  }
+
+  .u-invisible {
     visibility: hidden;
   }
 
